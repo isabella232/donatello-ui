@@ -1,1 +1,10 @@
-<div>Side</div>
+<div>
+  <md-list>
+    <h3 md-subheader>Ports</h3>
+    <md-list-item *ngFor="let port of ports"
+                  (click)="portClicked(port)">
+      <h4 md-line>{{port.name}}</h4>
+      <p md-line>{{port.number}}</p>
+    </md-list-item>
+  </md-list>
+</div>
