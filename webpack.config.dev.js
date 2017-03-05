@@ -14,7 +14,7 @@ module.exports = {
     hints: false
   },
   entry: {
-    'polyfills': [
+    polyfills: [
       './src/polyfills.ts'
     ],
     angular: [

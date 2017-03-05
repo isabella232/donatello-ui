@@ -4,9 +4,15 @@
   <meta charset="utf-8">
   <title>Donatello-UI</title>
   <meta name="description" content="">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 
 </head>
 <body>
-  <my-app></my-app>
+  <do-app></do-app>
 </body>
 </html>

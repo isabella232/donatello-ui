@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+& {
+  .do-app-toolbar {
+    position: fixed;
+    height: @toolbar-height;
+    line-height: @toolbar-height;
+    left: 0;
+    right: 0;
+    background: green;
+
+    span {
+      color: white;
+      font-size: 18px;
+    }
+  }
+
+  .do-side-menu {
+    position: fixed;
+    top: 40px;
+    bottom: 0;
+    width: @sideMenuWidth;
+    border-right: 1px solid black;
+  }
+}
