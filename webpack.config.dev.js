@@ -9,14 +9,17 @@ module.exports = {
     reasons: true,
     errorDetails: true
   },
+  target: 'electron-renderer',
   performance: {
     hints: false
   },
   entry: {
+    'polyfills': [
+      './src/polyfills.ts'
+    ],
     angular: [
       'rxjs',
-      'zone.js',
-      'core-js',
+      'ts-helpers',
       '@angular/core',
       '@angular/common',
       '@angular/compiler',
@@ -24,7 +27,7 @@ module.exports = {
       '@angular/platform-browser',
       '@angular/platform-browser-dynamic'
     ],
-    app: './src/app.module.ts'
+    app: './src/main.ts'
   },
   output: {
     path: 'dist',
@@ -75,13 +78,13 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['angular', 'manifest']
+      names: ['polyfills', 'angular', 'manifest']
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       hash: false,
       template: './src/index.tpl',
-      chunks: ['manifest', 'angular', 'app']
+      chunks: ['polyfills', 'manifest', 'angular', 'app']
     }),
     new ExtractTextPlugin('[name].css'),
   ]
