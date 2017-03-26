@@ -44,27 +44,15 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            use: 'css-loader'
-          })
+        use: ['css-loader']
       },
       {
         test: /\.less$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            use: 'css-loader!less-loader'
-          })
+        use: ['css-loader', 'less-loader']
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract(
-          {
-            fallback: 'style-loader',
-            use: 'css-loader!sass-loader'
-          })
+        use: ['css-loader', 'sass-loader']
       },
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
@@ -94,7 +82,6 @@ module.exports = {
       template: './src/index.tpl',
       chunks: ['polyfills', 'manifest', 'angular', 'app']
     }),
-    new ExtractTextPlugin('[name].css'),
     new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       __dirname
