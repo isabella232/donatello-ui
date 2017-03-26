@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
-require('./app.less');
 
 @Component({
   selector: 'do-app',
   template: require('./app.html'),
-  styleUrls: ['app.css']
+  styles: [require('../../styles/theme.scss').toString(), require('./app.less').toString()]
 })
 export class AppComponent {
   name = 'Angular';
