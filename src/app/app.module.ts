@@ -5,6 +5,7 @@ import {AppComponent} from './components/app/app.cmp';
 import {MockService} from './services/mock-service/mock.srv';
 import {PortsListComponent} from './components/ports-list/ports-list.cmp';
 import {ServiceView} from './components/service-view/service-view.cmp';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
