@@ -8,7 +8,6 @@ import {ServiceView} from './components/service-view/service-view.cmp';
 import {ServiceDialog} from './components/ports-list/service-dialog/service-dialog';
 import {RouterModule} from '@angular/router';
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -17,7 +16,7 @@ import {RouterModule} from '@angular/router';
   declarations: [
     AppComponent,
     PortsListComponent,
-    ServiceDialog
+    ServiceDialog,
     ServiceView
   ],
   bootstrap: [
