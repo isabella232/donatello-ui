@@ -1,6 +1,18 @@
 @import '../../styles/variables';
 
 & {
+
+  :host {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  md-sidenav-container {
+    flex: 1;
+  }
+
   .do-app-toolbar {
     position: fixed;
     height: @toolbar-height;
