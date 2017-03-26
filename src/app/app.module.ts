@@ -5,6 +5,7 @@ import {AppComponent} from './components/app/app.cmp';
 import {MockService} from './services/mock-service/mock.srv';
 import {PortsListComponent} from './components/ports-list/ports-list.cmp';
 import './styles/theme.scss';
+import {ServiceDialog} from './components/ports-list/service-dialog/service-dialog';
 
 
 @NgModule({
@@ -14,12 +15,18 @@ import './styles/theme.scss';
   ],
   declarations: [
     AppComponent,
-    PortsListComponent
+    PortsListComponent,
+    ServiceDialog
   ],
   bootstrap: [
     AppComponent
   ],
-  providers: [MockService]
+  entryComponents: [
+    ServiceDialog
+  ],
+  providers: [
+    MockService
+  ]
 })
 export class AppModule {
   constructor() {

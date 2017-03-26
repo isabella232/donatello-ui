@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {IPort} from 'donatello';
+import {ServiceDialog} from './service-dialog/service-dialog';
+import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'do-ports-list',
@@ -8,8 +10,9 @@ import {IPort} from 'donatello';
 })
 export class PortsListComponent implements OnInit {
   ports: IPort[];
+  selectedOption: string;
 
-  constructor(private mockService: MockService) {
+  constructor(private mockService: MockService, private dialog: MdDialog) {
   }
 
   ngOnInit(): void {
@@ -63,5 +66,12 @@ export class PortsListComponent implements OnInit {
 
   portClicked(port: IPort) {
     alert(port.id);
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ServiceDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedOption = result;
+    });
   }
 }

@@ -8,4 +8,8 @@ export class MockService {
   constructor() {
     this.mockService = new StateService();
   }
+
+  addPort (){
+
+  }
 }
