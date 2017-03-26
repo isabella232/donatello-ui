@@ -6,11 +6,14 @@ import {MockService} from './services/mock-service/mock.srv';
 import {PortsListComponent} from './components/ports-list/ports-list.cmp';
 import {ServiceView} from './components/service-view/service-view.cmp';
 import {RouterModule} from '@angular/router';
+import {routes} from './app.router';
+import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 @NgModule({
   imports: [
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule.forRoot(routes)
   ],
   declarations: [
     AppComponent,
@@ -20,7 +23,11 @@ import {RouterModule} from '@angular/router';
   bootstrap: [
     AppComponent
   ],
-  providers: [MockService]
+  providers: [
+    {provide: APP_BASE_HREF, useValue: ''},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    MockService
+  ]
 })
 export class AppModule {
   constructor() {
