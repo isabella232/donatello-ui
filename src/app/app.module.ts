@@ -9,6 +9,7 @@ import {ServiceDialog} from './components/ports-list/service-dialog/service-dial
 import {RouterModule} from '@angular/router';
 import {routes} from './app.router';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
+import './styles/theme.scss';
 
 @NgModule({
   imports: [
