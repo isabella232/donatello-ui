@@ -6,6 +6,7 @@ import {MockService} from './services/mock-service/mock.srv';
 import {PortsListComponent} from './components/ports-list/ports-list.cmp';
 import {ServiceView} from './components/service-view/service-view.cmp';
 import {ServiceDialog} from './components/ports-list/service-dialog/service-dialog';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {ServiceDialog} from './components/ports-list/service-dialog/service-dial
     AppComponent,
     PortsListComponent,
     ServiceDialog
+    ServiceView
   ],
   bootstrap: [
     AppComponent
