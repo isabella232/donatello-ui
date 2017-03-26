@@ -1,12 +1,20 @@
-<md-toolbar color="primary">
-  <span>md-dialog-title	</span>
-</md-toolbar>
+<div class="do-ccc" md-dialog-title>Add Service</div>
 <div>
   <md-dialog-content>
-
+    <md-input-container>
+      <input mdInput placeholder="Service Name">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Service Id">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput placeholder="Port">
+    </md-input-container>
   </md-dialog-content>
+
   <md-dialog-actions>
     <button md-raised-button>Add</button>
+    <button md-raised-button md-dialog-close>Close</button>
   </md-dialog-actions>
-  <button md-raised-button md-dialog-close>Close</button>
+
 </div>
