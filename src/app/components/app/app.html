@@ -1,11 +1,18 @@
 <div>
-  <div class="do-app-toolbar">
+  <md-toolbar color="primary">
     <span>Donatello</span>
-  </div>
-  <div class="do-side-menu">
-    <do-ports-list></do-ports-list>
-  </div>
-  <div class="do-main-view">
-    <!--<do-routes-list></do-routes-list>-->
-  </div>
+  </md-toolbar>
+  <md-sidenav-container>
+    <md-sidenav class="example-sidenav"
+                mode="side"
+                disableClose="true"
+                opened="true">
+      <do-ports-list></do-ports-list>
+    </md-sidenav>
+
+    <div class="do-main-view">
+      <span>Main view</span>
+      <!--<do-routes-list></do-routes-list>-->
+    </div>
+  </md-sidenav-container>
 </div>
