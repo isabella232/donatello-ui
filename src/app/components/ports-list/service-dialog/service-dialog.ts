@@ -10,7 +10,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styles: [require('./service-dialog.less').toString()]
 })
 export class ServiceDialog implements OnInit {
-
   registerForm: FormGroup;
 
   constructor(private dialogRef: MdDialogRef<ServiceDialog>, private mockService: MockService, private formBuilder: FormBuilder) {
@@ -20,7 +19,7 @@ export class ServiceDialog implements OnInit {
     this.registerForm = this.formBuilder.group({
       servicename: ['', Validators.required],
       serviceid: ['', Validators.required],
-      port: ''
+      port: ['', Validators.required]
     });
   }
 
