@@ -8,7 +8,7 @@
     </md-input-container>
 
     <md-input-container>
-      <input mdInput placeholder="Service Id" formControlName="serviceid">
+      <input mdInput [placeholder]="test" formControlName="serviceid">
       <!--<p *ngIf="registerForm.controls.serviceid.errors">This field is required!</p>-->
     </md-input-container>
 
@@ -16,10 +16,11 @@
       <input mdInput placeholder="Port" formControlName="port">
       <!--<p *ngIf="registerForm.controls.port.errors">This field is required!</p>-->
     </md-input-container>
+
   </md-dialog-content>
 
   <md-dialog-actions>
-    <button md-raised-button>Add</button>
+    <button type="submit" [disabled]="!registerForm.valid" md-raised-button>Add</button>
     <button md-raised-button md-dialog-close>Close</button>
   </md-dialog-actions>
   </form>
