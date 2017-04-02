@@ -19,10 +19,6 @@ export class PortsListComponent implements OnInit {
     this.ports = this.mockService.getAllServices();
   }
 
-  portClicked(port: IPort) {
-    alert(port.id);
-  }
-
   openDialog() {
     const dialogRef = this.dialog.open(ServiceDialog);
     dialogRef.afterClosed().subscribe(result => {
