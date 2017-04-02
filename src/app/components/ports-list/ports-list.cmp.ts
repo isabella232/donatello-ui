@@ -10,14 +10,14 @@ import {MdDialog} from '@angular/material';
   styles: [require('./ports-list.less').toString()]
 })
 export class PortsListComponent implements OnInit {
-  ports: IPort[];
+  services: IPort[];
   selectedOption: string;
 
   constructor(private mockService: MockService, private dialog: MdDialog) {
   }
 
   ngOnInit(): void {
-    this.ports = this.mockService.getAllServices();
+    this.services = this.mockService.getAllServices();
   }
 
   openDialog() {

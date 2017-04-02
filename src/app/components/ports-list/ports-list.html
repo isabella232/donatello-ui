@@ -1,11 +1,11 @@
 <div>
   <md-list>
-    <h3 md-subheader>Ports</h3>
-    <md-list-item *ngFor="let port of ports"
-                  [routerLink]="['/services', port.id]"
+    <h3 md-subheader>Services</h3>
+    <md-list-item *ngFor="let service of services"
+                  [routerLink]="['/services', service.id]"
                   routerLinkActive="do-active">
-      <h4 md-line>{{port.name}}</h4>
-      <p md-line>{{port.number}}</p>
+      <h4 md-line>{{service.name}}</h4>
+      <p md-line>{{service.number}}</p>
     </md-list-item>
   </md-list>
   <button md-raised-button (click)="openDialog()">Add Service</button>

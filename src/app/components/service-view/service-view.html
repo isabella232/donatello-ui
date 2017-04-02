@@ -1,10 +1,28 @@
-<md-list>
-  <md-list-item *ngFor="let route of service.routes">
-    <span>{{route.method}}</span>
-    <span>{{route.path}}</span>
-  </md-list-item>
-</md-list>
+<div class="do-service-view-container">
+  <div class="do-header">
+    <span class="do-name">{{service.name}}</span>
+    <span class="do-number">{{service.number}}</span>
+  </div>
 
-<div class="do-add-route-container">
-  <button md-raised-button>Add Route</button>
+  <md-list>
+    <md-list-item class="do-route-line" *ngFor="let route of service.routes">
+      <md-slide-toggle [checked]="route.active"
+                       (change)="routeToggle(route, $event)"></md-slide-toggle>
+      <span class="do-method {{route.method.toLowerCase()}}">{{route.method}}</span>
+      <span class="do-path">{{route.path}}</span>
+
+      <md-select (change)="responseChanged(route, $event)"
+                 [disabled]="!route.active">
+        <md-option *ngFor="let response of route.responses"
+                   [value]="response.name">
+          {{response.name}}
+        </md-option>
+      </md-select>
+
+    </md-list-item>
+  </md-list>
+
+  <div class="do-add-route-container">
+    <button md-raised-button>Add Route</button>
+  </div>
 </div>

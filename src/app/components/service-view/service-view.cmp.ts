@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {ActivatedRoute} from '@angular/router';
-import {IPort} from 'donatello';
+import {IPort, IRoute} from 'donatello';
+import {MdSelectChange, MdSlideToggleChange} from '@angular/material';
 
 @Component({
   selector: 'do-service-view',
@@ -22,6 +23,14 @@ export class ServiceView implements OnInit {
 
   init(serviceId: string) {
     this.service = this.mockService.getService(serviceId);
+  }
+
+  responseChanged(route: IRoute, event: MdSelectChange) {
+    console.log(event);
+  }
+
+  routeToggle(route: IRoute, event: MdSlideToggleChange) {
+    route.active = event.checked;
   }
 }
 

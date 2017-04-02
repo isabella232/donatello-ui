@@ -1,6 +1,58 @@
 & {
+  .do-service-view-container {
+    padding: 10px;
+  }
+
+  .do-header {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .do-name {
+      font-size: 22px;
+    }
+
+    .do-number {
+      margin-left: 10px;
+      color: #CCCCCC;
+    }
+  }
+
   .do-add-route-container {
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+  }
+
+  .do-route-line {
+      .do-method {
+        display: inline-block;
+        width: 60px;
+        height: 25px;
+        color: #FFFFFF;
+        text-align: center;
+        line-height: 25px;
+
+        &.get {
+          background: #008018;
+        }
+
+        &.post {
+          background: #FFA42E;
+        }
+
+        &.put {
+          background: #0000FF;
+        }
+
+        &.delete {
+          background: #000000;
+        }
+      }
+
+    .do-path {
+      flex: 1;
+      margin-left: 20px;
+    }
   }
 }
