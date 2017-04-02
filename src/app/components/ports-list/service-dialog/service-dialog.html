@@ -1,14 +1,20 @@
 <div class="do-ccc" md-dialog-title>Add Service</div>
 <div>
+  <form [formGroup]="registerForm">
   <md-dialog-content>
     <md-input-container>
-      <input mdInput placeholder="Service Name">
+      <input mdInput placeholder="Service Name" formControlName="servicename">
+      <!--<p *ngIf="registerForm.controls.servicename.errors">This field is required!</p>-->
     </md-input-container>
+
     <md-input-container>
-      <input mdInput placeholder="Service Id">
+      <input mdInput placeholder="Service Id" formControlName="serviceid">
+      <!--<p *ngIf="registerForm.controls.serviceid.errors">This field is required!</p>-->
     </md-input-container>
+
     <md-input-container>
-      <input mdInput placeholder="Port">
+      <input mdInput placeholder="Port" formControlName="port">
+      <!--<p *ngIf="registerForm.controls.port.errors">This field is required!</p>-->
     </md-input-container>
   </md-dialog-content>
 
@@ -16,5 +22,5 @@
     <button md-raised-button>Add</button>
     <button md-raised-button md-dialog-close>Close</button>
   </md-dialog-actions>
-
+  </form>
 </div>

@@ -10,12 +10,14 @@ import {RouterModule} from '@angular/router';
 import {routes} from './app.router';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
 import './styles/theme.scss';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     MaterialModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
