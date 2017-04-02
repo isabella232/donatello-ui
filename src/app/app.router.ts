@@ -1,7 +1,7 @@
 import {Routes} from '@angular/router';
-import {ServiceView} from './components/service-view/service-view.cmp';
+import {ServiceView, ServiceEmptyView} from './components/service-view/service-view.cmp';
 
 export const routes: Routes = [
-  {path: '', component: ServiceView},
+  {path: '', component: ServiceEmptyView},
   {path: 'services/:id', component: ServiceView}
 ];

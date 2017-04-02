@@ -23,7 +23,8 @@ export class ServiceDialog implements OnInit {
       port: ''
     });
   }
+
   addService() {
-    this.mockService.addPort();
+    this.mockService.createPort();
   }
 }

@@ -1,1 +1,10 @@
-<div>Hello {{id}}</div>
+<md-list>
+  <md-list-item *ngFor="let route of service.routes">
+    <span>{{route.method}}</span>
+    <span>{{route.path}}</span>
+  </md-list-item>
+</md-list>
+
+<div>
+  <button md-raised-button>Add Route</button>
+</div>

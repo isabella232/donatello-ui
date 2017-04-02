@@ -16,52 +16,7 @@ export class PortsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ports = [
-      {
-        id: '1',
-        number: 3333,
-        name: 'port one',
-        active: true,
-        routes: [
-          {
-            id: 'ssdd',
-            path: '/',
-            method: 'GET',
-            active: true,
-            responses: [{
-              id: 'sss',
-              name: 'sdad',
-              status: 200,
-              delay: 0,
-              data: {data: 'vlad'},
-              active: true,
-            }],
-          }
-        ]
-      },
-      {
-        id: '2',
-        number: 1234,
-        name: 'port 2',
-        active: true,
-        routes: [
-          {
-            id: 'ssdd',
-            path: '/',
-            method: 'GET',
-            active: true,
-            responses: [{
-              id: 'sss',
-              name: 'sdad',
-              status: 200,
-              delay: 0,
-              data: {data: 'vlad'},
-              active: true,
-            }],
-          }
-        ]
-      }
-    ];
+    this.ports = this.mockService.getAllServices();
   }
 
   portClicked(port: IPort) {
