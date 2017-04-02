@@ -18,7 +18,7 @@ export class PortsListComponent implements OnInit {
   ngOnInit(): void {
     this.ports = [
       {
-        id: 'assda',
+        id: '1',
         number: 3333,
         name: 'port one',
         active: true,
@@ -40,7 +40,7 @@ export class PortsListComponent implements OnInit {
         ]
       },
       {
-        id: 'p2_sadasd',
+        id: '2',
         number: 1234,
         name: 'port 2',
         active: true,
