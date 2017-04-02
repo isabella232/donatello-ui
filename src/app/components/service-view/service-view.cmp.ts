@@ -9,7 +9,6 @@ import {IPort} from 'donatello';
   styles: [require('./service-view.less').toString()]
 })
 export class ServiceView implements OnInit {
-  id: string;
   service: IPort;
 
   constructor(private mockService: MockService, private route: ActivatedRoute) {
@@ -17,14 +16,12 @@ export class ServiceView implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.id = params['id'];
+      this.init(params['id']);
     });
-
-    this.init();
   }
 
-  init() {
-    this.service = this.mockService.getService(this.id);
+  init(serviceId: string) {
+    this.service = this.mockService.getService(serviceId);
   }
 }
 
