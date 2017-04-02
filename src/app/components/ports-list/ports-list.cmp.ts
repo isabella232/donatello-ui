@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {IPort} from 'donatello';
-import {ServiceDialog} from './service-dialog/service-dialog';
+import {ServiceDialog} from './service-dialog/service-dialog.cmp';
 import {MdDialog} from '@angular/material';
 
 @Component({
   selector: 'do-ports-list',
-  template: require('./ports-list.html')
+  template: require('./ports-list.html'),
+  styles: [require('./ports-list.less').toString()]
 })
 export class PortsListComponent implements OnInit {
   ports: IPort[];

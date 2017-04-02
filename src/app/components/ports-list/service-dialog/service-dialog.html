@@ -1,27 +1,27 @@
 <div class="do-ccc" md-dialog-title>Add Service</div>
 <div>
   <form [formGroup]="registerForm">
-  <md-dialog-content>
-    <md-input-container>
-      <input mdInput placeholder="Service Name" formControlName="servicename">
-      <!--<p *ngIf="registerForm.controls.servicename.errors">This field is required!</p>-->
-    </md-input-container>
+    <md-dialog-content>
+      <md-input-container>
+        <input mdInput placeholder="Service Name" formControlName="serviceName">
+        <!--<p *ngIf="registerForm.controls.serviceName.errors">This field is required!</p>-->
+      </md-input-container>
 
-    <md-input-container>
-      <input mdInput placeholder="Service Id" formControlName="serviceid">
-      <!--<p *ngIf="registerForm.controls.serviceid.errors">This field is required!</p>-->
-    </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Service Id" formControlName="serviceId">
+        <!--<p *ngIf="registerForm.controls.serviceId.errors">This field is required!</p>-->
+      </md-input-container>
 
-    <md-input-container>
-      <input mdInput placeholder="Port" formControlName="port">
-      <!--<p *ngIf="registerForm.controls.port.errors">This field is required!</p>-->
-    </md-input-container>
+      <md-input-container>
+        <input mdInput placeholder="Port" formControlName="port">
+        <!--<p *ngIf="registerForm.controls.port.errors">This field is required!</p>-->
+      </md-input-container>
 
-  </md-dialog-content>
+    </md-dialog-content>
 
-  <md-dialog-actions>
-    <button [disabled]="!registerForm.valid" md-raised-button>Add</button>
-    <button md-raised-button md-dialog-close>Close</button>
-  </md-dialog-actions>
+    <md-dialog-actions>
+      <button [disabled]="!registerForm.valid" md-raised-button>Add</button>
+      <button md-raised-button md-dialog-close>Close</button>
+    </md-dialog-actions>
   </form>
 </div>

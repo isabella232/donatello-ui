@@ -3,7 +3,7 @@
     <h3 md-subheader>Ports</h3>
     <md-list-item *ngFor="let port of ports"
                   [routerLink]="['/services', port.id]"
-                  routerLinkActive="active">
+                  routerLinkActive="do-active">
       <h4 md-line>{{port.name}}</h4>
       <p md-line>{{port.number}}</p>
     </md-list-item>

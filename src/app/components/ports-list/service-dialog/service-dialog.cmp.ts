@@ -12,18 +12,21 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class ServiceDialog implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private dialogRef: MdDialogRef<ServiceDialog>, private mockService: MockService, private formBuilder: FormBuilder) {
+  constructor(private dialogRef: MdDialogRef<ServiceDialog>,
+              private mockService: MockService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      servicename: ['', Validators.required],
-      serviceid: ['', Validators.required],
+      serviceName: ['',
+        Validators.required],
+      serviceId: ['', Validators.required],
       port: ['', Validators.required]
     });
   }
 
-  addService() {
+  createService() {
     this.mockService.createPort();
   }
 }
