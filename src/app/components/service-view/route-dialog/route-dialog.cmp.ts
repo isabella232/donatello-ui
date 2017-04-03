@@ -38,14 +38,6 @@ export class RouteDialog implements OnInit {
     });
   }
 
-  private initView() {
-    const {route, serviceId} = this.dialogRef.config.data;
-    this.serviceId = serviceId;
-    this.isUpdate = !!route;
-    this.route = <IRoute>{...this.route, ...route};
-    this.prevRouteId = this.route.id;
-  }
-
   saveRoute() {
     const route: IRoute = this.routeForm.getRawValue();
     this.isUpdate ?
@@ -53,5 +45,13 @@ export class RouteDialog implements OnInit {
       this.mockService.createRoute(this.serviceId, route);
 
     this.dialogRef.close();
+  }
+
+  private initView() {
+    const {route, serviceId} = this.dialogRef.config.data;
+    this.serviceId = serviceId;
+    this.isUpdate = !!route;
+    this.route = <IRoute>{...this.route, ...route};
+    this.prevRouteId = this.route.id;
   }
 }
