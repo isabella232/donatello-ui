@@ -8,55 +8,55 @@ export class MockService {
 
   constructor() {
     this.readStateFromFile();
-    this.mockService = new StateService();
-    [
-      {
-        id: '1',
-        number: 3333,
-        name: 'port one',
-        active: true,
-        routes: [
-          {
-            id: 'ssdd',
-            path: '/',
-            method: 'GET',
-            active: true,
-            responses: [{
-              id: 'sss',
-              name: 'sdad',
-              status: 200,
-              delay: 0,
-              data: {data: 'vlad'},
-              active: true,
-            }],
-          }
-        ]
-      },
-      {
-        id: '2',
-        number: 1234,
-        name: 'port 2',
-        active: true,
-        routes: [
-          {
-            id: 'ssdd',
-            path: '/',
-            method: 'GET',
-            active: false,
-            responses: [{
-              id: 'sss',
-              name: 'sdad',
-              status: 200,
-              delay: 0,
-              data: {data: 'keren'},
-              active: true,
-            }]
-          }
-        ]
-      }
-    ].forEach((port) => {
-      this.writeStateToFile(this.mockService.createPort(<IPort>port));
-    });
+    // this.mockService = new StateService();
+    // [
+    //   {
+    //     id: '1',
+    //     number: 3333,
+    //     name: 'port one',
+    //     active: true,
+    //     routes: [
+    //       {
+    //         id: 'ssdd',
+    //         path: '/',
+    //         method: 'GET',
+    //         active: true,
+    //         responses: [{
+    //           id: 'sss',
+    //           name: 'sdad',
+    //           status: 200,
+    //           delay: 0,
+    //           data: {data: 'vlad'},
+    //           active: true,
+    //         }],
+    //       }
+    //     ]
+    //   },
+    //   {
+    //     id: '2',
+    //     number: 1234,
+    //     name: 'port 2',
+    //     active: true,
+    //     routes: [
+    //       {
+    //         id: 'ssdd',
+    //         path: '/',
+    //         method: 'GET',
+    //         active: false,
+    //         responses: [{
+    //           id: 'sss',
+    //           name: 'sdad',
+    //           status: 200,
+    //           delay: 0,
+    //           data: {data: 'keren'},
+    //           active: true,
+    //         }]
+    //       }
+    //     ]
+    //   }
+    // ].forEach((port) => {
+    //   this.writeStateToFile(this.mockService.createPort(<IPort>port));
+    // });
 
   }
 
