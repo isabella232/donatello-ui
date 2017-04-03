@@ -9,7 +9,7 @@ import {ServiceDialog} from './components/ports-list/service-dialog/service-dial
 import {RouterModule} from '@angular/router';
 import {routes} from './app.router';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {RouteDialog} from './components/service-view/route-dialog/route-dialog.cmp';
 import './styles/theme.scss';
 import {ResponseForm} from './components/service-view/route-dialog/response-form/response-form.cmp';
@@ -19,7 +19,8 @@ import {ResponseForm} from './components/service-view/route-dialog/response-form
     BrowserModule,
     MaterialModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   declarations: [
     AppComponent,

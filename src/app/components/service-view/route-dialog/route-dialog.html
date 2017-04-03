@@ -20,19 +20,25 @@
       <md-slide-toggle formControlName="active">Active</md-slide-toggle>
 
       <div class="do-response-container">
-        <md-select *ngIf="route.responses.length" placeholder="Responses...">
-          <md-option *ngFor="let response of route.responses" [value]="response.id">{{response.name}}</md-option>
+        <md-select *ngIf="route.responses.length && !showAddResponse"
+                   placeholder="Responses..."
+                   (change)="onResponseEditChange($event)">
+          <md-option *ngFor="let response of route.responses" [value]="response">{{response.name}}</md-option>
         </md-select>
 
-        <div *ngIf="showEditResponse">
-          <response-form [config]="responseConfig" (onSave)="onResponseSave($event)" (onCancel)="onResponseCancel()"></response-form>
+        <div class="ob-response-form-container" *ngIf="responseToEditConfig">
+          <response-form [config]="responseToEditConfig"
+                         (onSave)="onResponseEditSave($event)"
+                         (onDelete)="onResponseDeleteSave($event)"
+                         (onCancel)="onResponseEditCancel()">
+          </response-form>
         </div>
 
-        <div class="do-add-btn-response-container" *ngIf="!showAddResponse">
+        <div class="do-add-btn-response-container" *ngIf="!showAddResponse && !responseToEditConfig">
           <button md-raised-button (click)="addResponse()">Add Response</button>
         </div>
 
-        <div class="ob-response-form-container" *ngIf="showAddResponse">
+        <div class="ob-response-form-container" *ngIf="showAddResponse && !responseToEditConfig">
           <response-form [config]="responseConfig" (onSave)="onResponseSave($event)" (onCancel)="onResponseCancel()"></response-form>
         </div>
 

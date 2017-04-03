@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IRoute, IResponse} from 'donatello';
+import {IResponse} from 'donatello';
 
 @Component({
   selector: 'response-form',
@@ -10,6 +10,7 @@ import {IRoute, IResponse} from 'donatello';
 export class ResponseForm implements OnInit {
   @Input() config: IResponseInputConfig;
   @Output() onSave = new EventEmitter();
+  @Output() onDelete = new EventEmitter();
   @Output() onCancel = new EventEmitter();
 
   responseForm: FormGroup;
@@ -52,6 +53,10 @@ export class ResponseForm implements OnInit {
   saveResponse() {
     const response: IResponse = this.responseForm.getRawValue();
     this.onSave.emit(response);
+  }
+
+  deleteResponse() {
+    this.onDelete.emit(this.config.response);
   }
 
   cancel() {

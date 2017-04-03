@@ -20,7 +20,9 @@
       <input type="number" mdInput placeholder="Response Delay" formControlName="delay">
     </md-input-container>
 
-    <md-slide-toggle formControlName="active">Active</md-slide-toggle>
+    <div class="ob-active-toggle-container">
+      <md-slide-toggle formControlName="active">Active</md-slide-toggle>
+    </div>
 
     <md-input-container>
       <textarea mdInput placeholder="Response Data" formControlName="data" rows="6"></textarea>
@@ -29,8 +31,17 @@
     <div class="do-from-actions">
       <button class="do-save-btn"
               [disabled]="!responseForm.valid"
-              md-raised-button (click)="saveResponse(route)">
+              md-raised-button
+              color="primary"
+              (click)="saveResponse()">
         Save
+      </button>
+      <button class="do-remove-btn"
+              *ngIf="isUpdate"
+              md-raised-button
+              color="warn"
+              (click)="deleteResponse()">
+        Delete
       </button>
       <button class="do-close-btn" md-raised-button (click)="cancel()">Cancel</button>
     </div>

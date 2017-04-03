@@ -39,8 +39,16 @@
 
   .do-route-line {
     .do-edit-route-btn {
+      margin-right: 10px;
+      visibility: hidden;
+
       .editBtn();
-      margin: 10px;
+    }
+
+    &:hover {
+      .do-edit-route-btn {
+        visibility: visible;
+      }
     }
 
     .do-method {

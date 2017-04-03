@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MdDialogRef, MdSelectChange} from '@angular/material';
 import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IRoute, IResponse} from 'donatello';
@@ -24,6 +24,7 @@ export class RouteDialog implements OnInit {
   serviceId: string;
   prevRouteId: string;
   responseConfig: IResponseInputConfig;
+  responseToEditConfig: IResponseInputConfig;
   showAddResponse: boolean = false;
   showEditResponse: boolean = false;
 
@@ -39,6 +40,7 @@ export class RouteDialog implements OnInit {
       path: [this.route.path, Validators.required],
       method: [this.route.method, Validators.required],
       active: [this.route.active]
+
     });
   }
 
@@ -67,6 +69,29 @@ export class RouteDialog implements OnInit {
   onResponseSave(response: IResponse) {
     this.route.responses = this.route.responses ? this.route.responses.concat(response) : [].concat(response);
     this.showAddResponse = false;
+  }
+
+  onResponseEditChange({value}: {value: IResponse}) {
+    this.responseToEditConfig = {
+      response: {...value},
+      serviceId: this.serviceId,
+      routeId: this.route.id
+    };
+  }
+
+  onResponseEditSave(response: IResponse) {
+    const prevIndex = this.route.responses.findIndex((resp) => resp.id === this.responseToEditConfig.response.id);
+    this.route.responses[prevIndex] = response;
+    this.responseToEditConfig = null;
+  }
+
+  onResponseDeleteSave(response: IResponse) {
+    const prevIndex = this.route.responses.findIndex((resp) => resp.id === response.id);
+    this.route.responses.splice(prevIndex, 1);
+  }
+
+  onResponseEditCancel() {
+    this.responseToEditConfig = null;
   }
 
   saveRoute() {
