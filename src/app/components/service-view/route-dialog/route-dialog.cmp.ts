@@ -64,9 +64,9 @@ export class RouteDialog implements OnInit {
     this.showAddResponse = false;
   }
 
-  onResponseSave($event: IResponse) {
-    debugger;
-    this.route.responses = this.route.responses ? this.route.responses.concat([]) : [].concat([]);
+  onResponseSave(response: IResponse) {
+    this.route.responses = this.route.responses ? this.route.responses.concat(response) : [].concat(response);
+    this.showAddResponse = false;
   }
 
   saveRoute() {
