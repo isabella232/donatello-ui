@@ -66,7 +66,11 @@ export class MockService {
     return this.mockService.getPorts();
   }
 
-  createPort() {
+  createService(port: IPort) {
+    return this.mockService.createPort(port);
+  }
 
+  editService(portId: string, port: IPort) {
+    return this.mockService.updatePort(portId, port);
   }
 }

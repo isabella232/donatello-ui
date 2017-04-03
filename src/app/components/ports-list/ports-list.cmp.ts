@@ -23,7 +23,7 @@ export class PortsListComponent implements OnInit {
   openDialog() {
     const dialogRef = this.dialog.open(ServiceDialog);
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedOption = result;
+      this.ngOnInit();
     });
   }
 }
