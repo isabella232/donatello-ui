@@ -1,0 +1,29 @@
+<div md-dialog-title>Add Service</div>
+<div>
+  <form [formGroup]="routeForm">
+    <md-dialog-content>
+
+      <md-input-container>
+        <input mdInput placeholder="Route Id" formControlName="id">
+      </md-input-container>
+
+      <md-input-container>
+        <input mdInput placeholder="Route Path" formControlName="path">
+      </md-input-container>
+
+      <div>
+        <md-select formControlName="method">
+          <md-option *ngFor="let method of methods" [value]="method">{{method}}</md-option>
+        </md-select>
+      </div>
+
+      <md-slide-toggle formControlName="active">Active</md-slide-toggle>
+
+    </md-dialog-content>
+
+    <md-dialog-actions>
+      <button [disabled]="!routeForm.valid" md-raised-button (click)="saveRoute(route)">Save</button>
+      <button md-raised-button md-dialog-close>Close</button>
+    </md-dialog-actions>
+  </form>
+</div>

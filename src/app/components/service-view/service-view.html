@@ -6,12 +6,12 @@
 
   <md-list>
     <md-list-item class="do-route-line" *ngFor="let route of service.routes">
-      <md-slide-toggle [checked]="route.active"
-                       (change)="routeToggle(route, $event)"></md-slide-toggle>
+      <md-slide-toggle [checked]="route.active" (change)="routeToggle(route, $event)"></md-slide-toggle>
       <span class="do-method {{route.method.toLowerCase()}}">{{route.method}}</span>
       <span class="do-path">{{route.path}}</span>
 
       <md-select (change)="responseChanged(route, $event)"
+                 placeholder="Response..."
                  [disabled]="!route.active">
         <md-option *ngFor="let response of route.responses"
                    [value]="response.name">
@@ -23,6 +23,6 @@
   </md-list>
 
   <div class="do-add-route-container">
-    <button md-raised-button>Add Route</button>
+    <button md-raised-button (click)="openRouteDialog()">Add Route</button>
   </div>
 </div>

@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {ActivatedRoute} from '@angular/router';
 import {IPort, IRoute} from 'donatello';
-import {MdSelectChange, MdSlideToggleChange} from '@angular/material';
+import {MdSelectChange, MdSlideToggleChange, MdDialog} from '@angular/material';
+import {RouteDialog} from './route-dialog/route-dialog.cmp';
 
 @Component({
   selector: 'do-service-view',
@@ -12,7 +13,7 @@ import {MdSelectChange, MdSlideToggleChange} from '@angular/material';
 export class ServiceView implements OnInit {
   service: IPort;
 
-  constructor(private mockService: MockService, private route: ActivatedRoute) {
+  constructor(private mockService: MockService, private route: ActivatedRoute, private routeDialog: MdDialog) {
   }
 
   ngOnInit(): void {
@@ -30,7 +31,19 @@ export class ServiceView implements OnInit {
   }
 
   routeToggle(route: IRoute, event: MdSlideToggleChange) {
-    route.active = event.checked;
+    // this.mockService.updateRoute();
+  }
+
+  openRouteDialog(route: IRoute = null) {
+    const dialogRef = this.routeDialog.open(RouteDialog, {
+      data: {
+        route,
+        serviceId: this.service.id
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
   }
 }
 
