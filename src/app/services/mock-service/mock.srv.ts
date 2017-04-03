@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
-import {StateService, IPort, IRoute} from 'donatello';
+import {StateService, IPort, IRoute, IState} from 'donatello';
+import * as fs from 'fs';
 
 @Injectable()
 export class MockService {
   mockService: StateService;
 
   constructor() {
+    this.readStateFromFile();
     this.mockService = new StateService();
     [
       {
@@ -48,18 +50,26 @@ export class MockService {
               delay: 0,
               data: {data: 'keren'},
               active: true,
-            }],
+            }]
           }
         ]
       }
     ].forEach((port) => {
-      this.mockService.createPort(<IPort>port);
+      this.writeStateToFile(this.mockService.createPort(<IPort>port));
     });
 
   }
 
+  createRoute(serviceId: string, route: IRoute): void {
+    this.writeStateToFile(this.mockService.createRoute(serviceId, route));
+  }
+
+  updateRoute(serviceId: string, routeId: string, route: IRoute): void {
+    this.writeStateToFile(this.mockService.updateRoute(serviceId, routeId, route));
+  }
+
   getService(id: string): IPort {
-    return this.mockService.getPort(id)
+    return this.mockService.getPort(id);
   }
 
   getAllServices(): IPort[] {
@@ -67,18 +77,30 @@ export class MockService {
   }
 
   createService(port: IPort) {
-    return this.mockService.createPort(port);
+    this.writeStateToFile(this.mockService.createPort(port));
   }
 
   editService(portId: string, port: IPort) {
-    return this.mockService.updatePort(portId, port);
+    this.writeStateToFile(this.mockService.updatePort(portId, port));
   }
 
-  createRoute(serviceId: string, route: IRoute): void {
-    this.mockService.createRoute(serviceId, route);
+  private readStateFromFile() {
+    fs.readFile('state.json', {encoding: 'utf8'}, (err, data) => {
+      if (err) {
+        return;
+      }
+
+      this.mockService.createState(JSON.parse(data.toString()));
+    });
   }
 
-  updateRoute(serviceId: string, routeId: string, route: IRoute): void {
-    this.mockService.updateRoute(serviceId, routeId, route);
+  private writeStateToFile(state: IState) {
+    fs.writeFile('state.json', JSON.stringify(state), (err: NodeJS.ErrnoException, fd: number) => {
+      if (err) {
+        console.error('error!');
+        return;
+      }
+      console.log(fd);
+    });
   }
 }

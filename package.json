@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "build:dev": "rm -rf dist && webpack --config=webpack.config.dev.js --watch",
-    "serve": "electron ."
+    "serve": "electron .",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "author": "",
   "license": "MIT",
