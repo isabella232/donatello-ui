@@ -11,8 +11,8 @@ import {routes} from './app.router';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouteDialog} from './components/service-view/route-dialog/route-dialog.cmp';
-import './styles/theme.scss';
 import {ResponseForm} from './components/service-view/route-dialog/response-form/response-form.cmp';
+import './styles/theme.scss';
 
 @NgModule({
   imports: [
