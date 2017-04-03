@@ -1,4 +1,13 @@
 & {
+  .editBtn() {
+    transform: scale(0.75);
+
+    &.mat-mini-fab {
+      background-color: inherit;
+      color: #000000;
+    }
+  }
+
   .do-service-view-container {
     padding: 10px;
   }
@@ -7,6 +16,10 @@
     display: inline-flex;
     align-items: center;
     margin-bottom: 20px;
+
+    .do-service-edit-btn {
+      .editBtn();
+    }
 
     .do-name {
       font-size: 22px;
@@ -25,30 +38,35 @@
   }
 
   .do-route-line {
-      .do-method {
-        display: inline-block;
-        width: 60px;
-        height: 25px;
-        color: #FFFFFF;
-        text-align: center;
-        line-height: 25px;
+    .do-edit-route-btn {
+      .editBtn();
+      margin: 10px;
+    }
 
-        &.get {
-          background: #008018;
-        }
+    .do-method {
+      display: inline-block;
+      width: 60px;
+      height: 25px;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 25px;
 
-        &.post {
-          background: #FFA42E;
-        }
-
-        &.put {
-          background: #0000FF;
-        }
-
-        &.delete {
-          background: #000000;
-        }
+      &.get {
+        background: #008018;
       }
+
+      &.post {
+        background: #FFA42E;
+      }
+
+      &.put {
+        background: #0000FF;
+      }
+
+      &.delete {
+        background: #000000;
+      }
+    }
 
     .do-path {
       flex: 1;

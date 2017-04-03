@@ -1,17 +1,21 @@
 <div class="do-service-view-container">
   <div class="do-header">
+    <button class="do-service-edit-btn" md-mini-fab><i class="material-icons">mode_edit</i></button>
     <span class="do-name">{{service.name}}</span>
     <span class="do-number">{{service.number}}</span>
   </div>
 
   <md-list>
     <md-list-item class="do-route-line" *ngFor="let route of service.routes">
+      <button class="do-edit-route-btn" md-mini-fab><i class="material-icons">mode_edit</i></button>
       <md-slide-toggle [checked]="route.active" (change)="routeToggle(route, $event)"></md-slide-toggle>
       <span class="do-method {{route.method.toLowerCase()}}">{{route.method}}</span>
       <span class="do-path">{{route.path}}</span>
 
       <md-select (change)="responseChanged(route, $event)"
                  placeholder="Response..."
+                 floatPlaceholder="never"
+
                  [disabled]="!route.active">
         <md-option *ngFor="let response of route.responses"
                    [value]="response.name">

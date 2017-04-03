@@ -1,0 +1,38 @@
+<div class="ob-response-container">
+  <div>
+    <span class="do-header">Response</span>
+  </div>
+
+  <form [formGroup]="responseForm">
+    <md-input-container>
+      <input mdInput placeholder="Response Id" formControlName="id">
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput placeholder="Response Name" formControlName="name">
+    </md-input-container>
+
+    <md-input-container>
+      <input type="number" mdInput placeholder="Response Status" formControlName="status">
+    </md-input-container>
+
+    <md-input-container>
+      <input type="number" mdInput placeholder="Response Delay" formControlName="delay">
+    </md-input-container>
+
+    <md-slide-toggle formControlName="active">Active</md-slide-toggle>
+
+    <md-input-container>
+      <textarea mdInput placeholder="Response Data" formControlName="data" rows="6"></textarea>
+    </md-input-container>
+
+    <div class="do-from-actions">
+      <button class="do-save-btn"
+              [disabled]="!responseForm.valid"
+              md-raised-button (click)="saveResponse(route)">
+        Save
+      </button>
+      <button class="do-close-btn" md-raised-button (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

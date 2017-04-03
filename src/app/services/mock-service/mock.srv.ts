@@ -18,7 +18,7 @@ export class MockService {
         routes: [
           {
             id: 'ssdd',
-            path: '/dddddd',
+            path: '/',
             method: 'GET',
             active: true,
             responses: [{
@@ -40,7 +40,7 @@ export class MockService {
         routes: [
           {
             id: 'ssdd',
-            path: '/asdasd',
+            path: '/',
             method: 'GET',
             active: false,
             responses: [{
@@ -48,7 +48,7 @@ export class MockService {
               name: 'sdad',
               status: 200,
               delay: 0,
-              data: {data: 'vlad'},
+              data: {data: 'keren'},
               active: true,
             }]
           }
@@ -67,12 +67,25 @@ export class MockService {
   updateRoute(serviceId: string, routeId: string, route: IRoute): void {
     this.writeStateToFile(this.mockService.updateRoute(serviceId, routeId, route));
   }
-  createPort() {
-    console.log('');
+
+  getService(id: string): IPort {
+    return this.mockService.getPort(id);
+  }
+
+  getAllServices(): IPort[] {
+    return this.mockService.getPorts();
+  }
+
+  createService(port: IPort) {
+    this.writeStateToFile(this.mockService.createPort(port));
+  }
+
+  editService(portId: string, port: IPort) {
+    this.writeStateToFile(this.mockService.updatePort(portId, port));
   }
 
   private readStateFromFile() {
-      fs.readFile('state.json', {encoding: 'utf8'}, (err, data) => {
+    fs.readFile('state.json', {encoding: 'utf8'}, (err, data) => {
       if (err) {
         return;
       }
@@ -89,13 +102,5 @@ export class MockService {
       }
       console.log(fd);
     });
-  }
-
-  getService(id: string): IPort {
-    return this.mockService.getPort(id);
-  }
-
-  getAllServices(): IPort[] {
-    return this.mockService.getPorts();
   }
 }

@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 import './service-dialog.less';
 import {MockService} from '../../../services/mock-service/mock.srv';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {IPort} from 'donatello';
+import {UtilService} from '../../../services/util-service/util.srv';
 
 @Component({
   selector: 'service-dialog',
@@ -10,7 +12,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styles: [require('./service-dialog.less').toString()]
 })
 export class ServiceDialog implements OnInit {
-  registerForm: FormGroup;
+  serviceForm: FormGroup;
+  service: IPort = {
+    id: `Service_${UtilService.getRandomInt()}`,
+    name: '',
+    number: null,
+    active: true
+  };
+  isUpdate: boolean = false;
 
   constructor(private dialogRef: MdDialogRef<ServiceDialog>,
               private mockService: MockService,
@@ -18,15 +27,19 @@ export class ServiceDialog implements OnInit {
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      serviceName: ['',
-        Validators.required],
-      serviceId: ['', Validators.required],
-      port: ['', Validators.required]
+    this.serviceForm = this.formBuilder.group({
+      id: [this.service.id, Validators.required],
+      name: [this.service.name, Validators.required],
+      number: [this.service.number, [Validators.required, Validators.pattern('[0-9]*')]],
+      active: [this.service.active]
     });
   }
 
-  createService() {
-    this.mockService.createPort();
+  saveService() {
+    const service: IPort = this.serviceForm.getRawValue();
+    this.isUpdate ?
+    this.mockService.editService(service.id, service) :
+    this.mockService.createService(service);
+    this.dialogRef.close();
   }
 }
