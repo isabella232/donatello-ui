@@ -4,60 +4,10 @@ import * as fs from 'fs';
 
 @Injectable()
 export class MockService {
-  mockService: StateService;
+  mockService: StateService = new StateService();
 
-  constructor() {
+  init() {
     this.readStateFromFile();
-    // this.mockService = new StateService();
-    // [
-    //   {
-    //     id: '1',
-    //     number: 3333,
-    //     name: 'port one',
-    //     active: true,
-    //     routes: [
-    //       {
-    //         id: 'ssdd',
-    //         path: '/',
-    //         method: 'GET',
-    //         active: true,
-    //         responses: [{
-    //           id: 'sss',
-    //           name: 'sdad',
-    //           status: 200,
-    //           delay: 0,
-    //           data: {data: 'vlad'},
-    //           active: true,
-    //         }],
-    //       }
-    //     ]
-    //   },
-    //   {
-    //     id: '2',
-    //     number: 1234,
-    //     name: 'port 2',
-    //     active: true,
-    //     routes: [
-    //       {
-    //         id: 'ssdd',
-    //         path: '/',
-    //         method: 'GET',
-    //         active: false,
-    //         responses: [{
-    //           id: 'sss',
-    //           name: 'sdad',
-    //           status: 200,
-    //           delay: 0,
-    //           data: {data: 'keren'},
-    //           active: true,
-    //         }]
-    //       }
-    //     ]
-    //   }
-    // ].forEach((port) => {
-    //   this.writeStateToFile(this.mockService.createPort(<IPort>port));
-    // });
-
   }
 
   createRoute(serviceId: string, route: IRoute): void {
@@ -85,13 +35,8 @@ export class MockService {
   }
 
   private readStateFromFile() {
-    fs.readFile('state.json', {encoding: 'utf8'}, (err, data) => {
-      if (err) {
-        return;
-      }
-
-      this.mockService.createState(JSON.parse(data.toString()));
-    });
+    const data = fs.readFileSync('state.json', {encoding: 'utf8'});
+    this.mockService.createState(JSON.parse(data.toString()));
   }
 
   private writeStateToFile(state: IState) {

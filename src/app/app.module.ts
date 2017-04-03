@@ -45,4 +45,7 @@ import './styles/theme.scss';
   ]
 })
 export class AppModule {
+  constructor(mockService: MockService) {
+    mockService.init();
+  }
 }
