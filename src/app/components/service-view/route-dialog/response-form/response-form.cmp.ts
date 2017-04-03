@@ -42,14 +42,6 @@ export class ResponseForm implements OnInit {
     });
   }
 
-  private initView() {
-    this.serviceId = this.config.serviceId;
-    this.routeId = this.config.routeId;
-    this.isUpdate = !!this.config.response;
-    this.response = {...this.response, ...this.config.response};
-    this.prevResponseId = this.response.id;
-  }
-
   saveResponse() {
     const response: IResponse = this.responseForm.getRawValue();
     this.onSave.emit(response);
@@ -61,6 +53,14 @@ export class ResponseForm implements OnInit {
 
   cancel() {
     this.onCancel.emit();
+  }
+
+  private initView() {
+    this.serviceId = this.config.serviceId;
+    this.routeId = this.config.routeId;
+    this.isUpdate = !!this.config.response;
+    this.response = {...this.response, ...this.config.response};
+    this.prevResponseId = this.response.id;
   }
 }
 

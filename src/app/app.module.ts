@@ -45,6 +45,4 @@ import './styles/theme.scss';
   ]
 })
 export class AppModule {
-  constructor() {
-  }
 }
