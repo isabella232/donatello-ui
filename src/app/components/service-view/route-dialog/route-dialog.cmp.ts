@@ -50,6 +50,8 @@ export class RouteDialog implements OnInit {
     const route: IRoute = this.routeForm.getRawValue();
     this.isUpdate ?
       this.mockService.updateRoute(this.serviceId, this.prevRouteId, route) :
-      this.mockService.createRoute(this.serviceId, route)
+      this.mockService.createRoute(this.serviceId, route);
+
+    this.dialogRef.close();
   }
 }

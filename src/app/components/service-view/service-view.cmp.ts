@@ -41,8 +41,9 @@ export class ServiceView implements OnInit {
         serviceId: this.service.id
       }
     });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.init(this.service.id);
     });
   }
 }
