@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {StateService, IPort} from 'donatello';
+import {StateService, IPort, IRoute} from 'donatello';
 
 @Injectable()
 export class MockService {
@@ -72,5 +72,13 @@ export class MockService {
 
   editService(portId: string, port: IPort) {
     return this.mockService.updatePort(portId, port);
+  }
+
+  createRoute(serviceId: string, route: IRoute): void {
+    this.mockService.createRoutes(serviceId, route);
+  }
+
+  updateRoute(serviceId: string, routeId: string, route: IRoute): void {
+    this.mockService.updateRoute(serviceId, routeId, route);
   }
 }

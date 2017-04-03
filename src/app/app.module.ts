@@ -9,8 +9,9 @@ import {ServiceDialog} from './components/ports-list/service-dialog/service-dial
 import {RouterModule} from '@angular/router';
 import {routes} from './app.router';
 import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/common';
-import './styles/theme.scss';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouteDialog} from './components/service-view/route-dialog/route-dialog.cmp';
+import './styles/theme.scss';
 
 @NgModule({
   imports: [
@@ -24,13 +25,15 @@ import {ReactiveFormsModule} from '@angular/forms';
     PortsListComponent,
     ServiceDialog,
     ServiceView,
-    ServiceEmptyView
+    ServiceEmptyView,
+    RouteDialog
   ],
   bootstrap: [
     AppComponent
   ],
   entryComponents: [
-    ServiceDialog
+    ServiceDialog,
+    RouteDialog
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: ''},

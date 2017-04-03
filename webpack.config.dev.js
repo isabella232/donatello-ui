@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   stats: {
@@ -30,7 +31,7 @@ module.exports = {
     app: './src/main.ts'
   },
   output: {
-    path: 'dist',
+    path: path.resolve('dist'),
     filename: '[name].bundle.js'
   },
   devtool: 'source-map',
