@@ -20,7 +20,7 @@
       <md-slide-toggle formControlName="active">Active</md-slide-toggle>
 
       <div class="do-response-container">
-        <md-select *ngIf="route.responses.length">
+        <md-select *ngIf="route.responses.length" placeholder="Responses...">
           <md-option *ngFor="let response of route.responses" [value]="response.id">{{response.name}}</md-option>
         </md-select>
 

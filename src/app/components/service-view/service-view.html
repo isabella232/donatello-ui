@@ -13,6 +13,8 @@
 
       <md-select (change)="responseChanged(route, $event)"
                  placeholder="Response..."
+                 floatPlaceholder="never"
+
                  [disabled]="!route.active">
         <md-option *ngFor="let response of route.responses"
                    [value]="response.name">

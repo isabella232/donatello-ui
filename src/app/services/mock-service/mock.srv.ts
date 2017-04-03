@@ -75,7 +75,7 @@ export class MockService {
   }
 
   createRoute(serviceId: string, route: IRoute): void {
-    this.mockService.createRoutes(serviceId, route);
+    this.mockService.createRoute(serviceId, route);
   }
 
   updateRoute(serviceId: string, routeId: string, route: IRoute): void {
