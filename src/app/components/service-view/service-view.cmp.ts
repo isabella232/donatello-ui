@@ -13,7 +13,9 @@ import {RouteDialog} from './route-dialog/route-dialog.cmp';
 export class ServiceView implements OnInit {
   service: IPort;
 
-  constructor(private mockService: MockService, private route: ActivatedRoute, private routeDialog: MdDialog) {
+  constructor(private mockService: MockService,
+              private route: ActivatedRoute,
+              private routeDialog: MdDialog) {
   }
 
   ngOnInit(): void {
@@ -26,7 +28,7 @@ export class ServiceView implements OnInit {
     this.service = this.mockService.getService(serviceId);
   }
 
-  responseChanged(route: IRoute, event: MdSelectChange) {
+  responseChanged(event: MdSelectChange) {
     console.log(event);
   }
 

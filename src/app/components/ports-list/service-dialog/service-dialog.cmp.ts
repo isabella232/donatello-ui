@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 import './service-dialog.less';
 import {MockService} from '../../../services/mock-service/mock.srv';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IPort} from 'donatello';
 import {UtilService} from '../../../services/util-service/util.srv';
 
@@ -37,9 +37,9 @@ export class ServiceDialog implements OnInit {
 
   saveService() {
     const service: IPort = this.serviceForm.getRawValue();
-    this.isUpdate ?
-    this.mockService.editService(service.id, service) :
-    this.mockService.createService(service);
-    this.dialogRef.close();
+    this.isUpdate ? this.mockService.editService(service.id, service) :
+      this.mockService.createService(service);
+
+    this.dialogRef.close(service);
   }
 }

@@ -3,6 +3,7 @@ import {MockService} from '../../services/mock-service/mock.srv';
 import {IPort} from 'donatello';
 import {ServiceDialog} from './service-dialog/service-dialog.cmp';
 import {MdDialog} from '@angular/material';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'do-ports-list',
@@ -13,22 +14,21 @@ export class PortsListComponent implements OnInit {
   services: IPort[];
   selectedOption: string;
 
-  constructor(private mockService: MockService, private dialog: MdDialog) {
+  constructor(private mockService: MockService,
+              private router: Router,
+              private dialog: MdDialog) {
   }
 
   ngOnInit(): void {
     this.services = this.mockService.getAllServices();
   }
 
-  openDialog(service: IPort = null) {
-    const dialogRef = this.dialog.open(ServiceDialog, {
-      data: {
-        service
-      }
-    });
+  openDialog() {
+    const dialogRef = this.dialog.open(ServiceDialog);
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((service: IPort) => {
       this.ngOnInit();
+      this.router.navigate(['/services', service.id]);
     });
   }
 }

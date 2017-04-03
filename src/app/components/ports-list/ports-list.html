@@ -7,6 +7,9 @@
       <h4 md-line>{{service.name}}</h4>
       <p md-line>{{service.number}}</p>
     </md-list-item>
+    <md-list-item *ngIf="!services.length">
+      <h4>No Services Yet</h4>
+    </md-list-item>
   </md-list>
 
   <button class="do-open-dialog-btn" md-raised-button (click)="openDialog()">Add Service</button>
