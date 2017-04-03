@@ -9,6 +9,6 @@ import {MockService} from '../../services/mock-service/mock.srv';
 export class AppComponent {
   name = 'Angular';
 
-  constructor(private mockService: MockService) {
+  constructor() {
   }
 }

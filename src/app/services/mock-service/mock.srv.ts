@@ -4,9 +4,10 @@ import * as fs from 'fs';
 
 @Injectable()
 export class MockService {
-  mockService: StateService = new StateService();
+  mockService: StateService;
 
   init() {
+    this.mockService = new StateService();
     this.readStateFromFile();
   }
 
@@ -35,8 +36,12 @@ export class MockService {
   }
 
   private readStateFromFile() {
-    const data = fs.readFileSync('state.json', {encoding: 'utf8'});
-    this.mockService.createState(JSON.parse(data.toString()));
+    try {
+      const data = fs.readFileSync('state.json', {encoding: 'utf8'});
+      this.mockService.createState(JSON.parse(data.toString()));
+    } catch (e) {
+      console.log('no states.json file');
+    }
   }
 
   private writeStateToFile(state: IState) {
