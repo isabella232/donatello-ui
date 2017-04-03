@@ -43,5 +43,6 @@ export class ServiceDialog implements OnInit {
   editService() {
     const port: IPort = this.serviceForm.getRawValue();
     this.mockService.editService(port.id, port);
+    this.dialogRef.close();
   }
 }
