@@ -45,7 +45,7 @@ export class ResponseForm implements OnInit {
     this.serviceId = this.config.serviceId;
     this.routeId = this.config.routeId;
     this.isUpdate = !!this.config.response;
-    this.response = <IRoute>{...this.response, ...this.config.response};
+    this.response = {...this.response, ...this.config.response};
     this.prevResponseId = this.response.id;
   }
 
