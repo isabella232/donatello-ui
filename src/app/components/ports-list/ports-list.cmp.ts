@@ -20,10 +20,17 @@ export class PortsListComponent implements OnInit {
     this.services = this.mockService.getAllServices();
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ServiceDialog);
+  openDialog(service: IPort = null) {
+    const dialogRef = this.dialog.open(ServiceDialog, {
+      data: {
+        service
+      }
+    });
+
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
     });
   }
 }
+
+
