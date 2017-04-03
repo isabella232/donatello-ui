@@ -12,6 +12,7 @@ import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/co
 import {ReactiveFormsModule} from '@angular/forms';
 import {RouteDialog} from './components/service-view/route-dialog/route-dialog.cmp';
 import './styles/theme.scss';
+import {ResponseForm} from './components/service-view/route-dialog/response-form/response-form.cmp';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import './styles/theme.scss';
     ServiceDialog,
     ServiceView,
     ServiceEmptyView,
-    RouteDialog
+    RouteDialog,
+    ResponseForm
   ],
   bootstrap: [
     AppComponent

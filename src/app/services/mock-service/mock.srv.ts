@@ -16,7 +16,7 @@ export class MockService {
         routes: [
           {
             id: 'ssdd',
-            path: '/dddddd',
+            path: '/',
             method: 'GET',
             active: true,
             responses: [{
@@ -38,7 +38,7 @@ export class MockService {
         routes: [
           {
             id: 'ssdd',
-            path: '/asdasd',
+            path: '/',
             method: 'GET',
             active: false,
             responses: [{
@@ -46,7 +46,7 @@ export class MockService {
               name: 'sdad',
               status: 200,
               delay: 0,
-              data: {data: 'vlad'},
+              data: {data: 'keren'},
               active: true,
             }],
           }

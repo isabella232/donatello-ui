@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IRoute} from 'donatello';
+import {IRoute, IResponse} from 'donatello';
+import {IResponseInputConfig} from './response-form/response-form.cmp';
 
 @Component({
   selector: 'route-dialog',
@@ -22,6 +23,9 @@ export class RouteDialog implements OnInit {
   };
   serviceId: string;
   prevRouteId: string;
+  responseConfig: IResponseInputConfig;
+  showAddResponse: boolean = false;
+  showEditResponse: boolean = false;
 
   constructor(private dialogRef: MdDialogRef<RouteDialog>,
               private mockService: MockService,
@@ -44,10 +48,29 @@ export class RouteDialog implements OnInit {
     this.isUpdate = !!route;
     this.route = <IRoute>{...this.route, ...route};
     this.prevRouteId = this.route.id;
+
+    this.responseConfig = {
+      serviceId: serviceId,
+      routeId: this.route.id,
+      response: null
+    }
+  }
+
+  addResponse() {
+    this.showAddResponse = true;
+  }
+
+  onResponseCancel() {
+    this.showAddResponse = false;
+  }
+
+  onResponseSave($event: IResponse) {
+    debugger;
+    this.route.responses = this.route.responses ? this.route.responses.concat([]) : [].concat([]);
   }
 
   saveRoute() {
-    const route: IRoute = this.routeForm.getRawValue();
+    const route: IRoute = {...this.route, ...this.routeForm.getRawValue()};
     this.isUpdate ?
       this.mockService.updateRoute(this.serviceId, this.prevRouteId, route) :
       this.mockService.createRoute(this.serviceId, route);
