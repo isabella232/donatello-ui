@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {ActivatedRoute} from '@angular/router';
-import {IPort, IRoute} from 'donatello';
+import {IPort, IRoute, IResponse} from 'donatello';
 import {MdSelectChange, MdSlideToggleChange, MdDialog} from '@angular/material';
 import {RouteDialog} from './route-dialog/route-dialog.cmp';
 
@@ -12,6 +12,7 @@ import {RouteDialog} from './route-dialog/route-dialog.cmp';
 })
 export class ServiceView implements OnInit {
   service: IPort;
+  selectedResponses = {};
 
   constructor(private mockService: MockService,
               private route: ActivatedRoute,
@@ -26,14 +27,18 @@ export class ServiceView implements OnInit {
 
   init(serviceId: string) {
     this.service = this.mockService.getService(serviceId);
+    this.setSelectedResponses();
   }
 
-  responseChanged(event: MdSelectChange) {
-    console.log(event);
+  responseChanged(route: IRoute, {value}: {value: string}) {
+    this.mockService.activateResponse(this.service.id, route.id, value);
+    this.init(this.service.id);
   }
 
-  routeToggle(route: IRoute, event: MdSlideToggleChange) {
-    // this.mockService.updateRoute();
+  routeToggle(route: IRoute, {checked}: {checked: boolean}) {
+    checked ? this.mockService.activateRoute(this.service.id, route.id) :
+      this.mockService.deactivateRoute(this.service.id, route.id);
+    this.init(this.service.id);
   }
 
   openRouteDialog(route: IRoute = null) {
@@ -47,6 +52,27 @@ export class ServiceView implements OnInit {
     dialogRef.afterClosed().subscribe(() => {
       this.init(this.service.id);
     });
+  }
+
+  private setSelectedResponses() {
+    if (this.service.routes) {
+      this.selectedResponses = this.service.routes.reduce((map, route) => {
+        map[route.id] = this.getSelectedResponse(route);
+        return map;
+      }, {})
+    } else {
+      this.selectedResponses = {};
+    }
+  }
+
+  private getSelectedResponse(route: IRoute): string {
+    let selectedResponse: IResponse;
+
+    if (route.responses) {
+      selectedResponse = route.responses.find((resp) => resp.active);
+    }
+
+    return selectedResponse ? selectedResponse.id : null;
   }
 }
 

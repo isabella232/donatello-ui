@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IResponse} from 'donatello';
+import {UtilService} from '../../../../services/util-service/util.srv';
 
 @Component({
   selector: 'response-form',
@@ -16,10 +17,10 @@ export class ResponseForm implements OnInit {
   responseForm: FormGroup;
   isUpdate: boolean = false;
   response: IResponse = {
-    id: '',
+    id: `Response_${UtilService.getRandomInt()}`,
     name: '',
     status: 200,
-    active: true,
+    active: false,
     delay: 1000,
     data: {}
   };

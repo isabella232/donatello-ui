@@ -17,7 +17,10 @@ export class ServiceDialog implements OnInit {
     id: `Service_${UtilService.getRandomInt()}`,
     name: '',
     number: null,
-    active: true
+    active: true,
+    proxy: {
+      url: ''
+    }
   };
   isUpdate: boolean = false;
 
@@ -31,15 +34,24 @@ export class ServiceDialog implements OnInit {
       id: [this.service.id, Validators.required],
       name: [this.service.name, Validators.required],
       number: [this.service.number, [Validators.required, Validators.pattern('[0-9]*')]],
+      proxyUrl: [this.service.proxy.url],
       active: [this.service.active]
     });
   }
 
   saveService() {
-    const service: IPort = this.serviceForm.getRawValue();
-    this.isUpdate ? this.mockService.editService(service.id, service) :
-      this.mockService.createService(service);
+    const rawValue = this.serviceForm.getRawValue();
+    if (rawValue.proxyUrl) {
+      rawValue.proxy = {
+        url: rawValue.proxyUrl
+      };
 
-    this.dialogRef.close(service);
+      delete rawValue.proxyUrl
+    }
+
+    this.isUpdate ? this.mockService.editService(rawValue.id, rawValue) :
+      this.mockService.createService(rawValue);
+
+    this.dialogRef.close(rawValue);
   }
 }

@@ -12,11 +12,13 @@ export class MockService {
   }
 
   createRoute(serviceId: string, route: IRoute): void {
-    this.writeStateToFile(this.mockService.createRoute(serviceId, route));
+    this.mockService.createRoute(serviceId, route);
+    this.writeStateToFile();
   }
 
   updateRoute(serviceId: string, routeId: string, route: IRoute): void {
-    this.writeStateToFile(this.mockService.updateRoute(serviceId, routeId, route));
+    this.mockService.updateRoute(serviceId, routeId, route);
+    this.writeStateToFile();
   }
 
   getService(id: string): IPort {
@@ -28,11 +30,37 @@ export class MockService {
   }
 
   createService(port: IPort) {
-    this.writeStateToFile(this.mockService.createPort(port));
+    this.mockService.createPort(port);
+    this.writeStateToFile();
   }
 
   editService(portId: string, port: IPort) {
-    this.writeStateToFile(this.mockService.updatePort(portId, port));
+    this.mockService.updatePort(portId, port)
+    this.writeStateToFile();
+  }
+
+  activateState(serviceId: string, routeId: string) {
+    // this.mockService.a(serviceId, routeId);
+    this.writeStateToFile();
+  }
+
+  activateRoute(serviceId: string, routeId: string) {
+    this.mockService.activateRoute(serviceId, routeId);
+    this.writeStateToFile();
+  }
+
+  deactivateRoute(serviceId: string, routeId: string) {
+    this.mockService.deactivateRoute(serviceId, routeId);
+    this.writeStateToFile();
+  }
+
+  activateResponse(serviceId: string, routeId: string, responseId: string) {
+    this.mockService.activateResponse(serviceId, routeId, responseId);
+    this.writeStateToFile();
+  }
+
+  getState(): IState {
+    return this.mockService.getState();
   }
 
   private readStateFromFile() {
@@ -44,7 +72,7 @@ export class MockService {
     }
   }
 
-  private writeStateToFile(state: IState) {
+  private writeStateToFile(state: IState = this.getState()) {
     fs.writeFile('state.json', JSON.stringify(state), (err: NodeJS.ErrnoException, fd: number) => {
       if (err) {
         console.error('error!');

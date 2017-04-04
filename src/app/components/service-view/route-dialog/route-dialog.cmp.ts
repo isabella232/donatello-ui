@@ -4,6 +4,7 @@ import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IRoute, IResponse} from 'donatello';
 import {IResponseInputConfig} from './response-form/response-form.cmp';
+import {UtilService} from '../../../services/util-service/util.srv';
 
 @Component({
   selector: 'route-dialog',
@@ -15,7 +16,7 @@ export class RouteDialog implements OnInit {
   methods: string[] = ['GET', 'POST', 'PUT', 'DELETE'];
   isUpdate: boolean = false;
   route: IRoute = {
-    id: '',
+    id: `Route_${UtilService.getRandomInt()}`,
     method: 'GET',
     path: '/',
     active: true,

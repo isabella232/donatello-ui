@@ -27,8 +27,10 @@ export class PortsListComponent implements OnInit {
     const dialogRef = this.dialog.open(ServiceDialog);
 
     dialogRef.afterClosed().subscribe((service: IPort) => {
-      this.ngOnInit();
-      this.router.navigate(['/services', service.id]);
+      if (service) {
+        this.ngOnInit();
+        this.router.navigate(['/services', service.id]);
+      }
     });
   }
 }
