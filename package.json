@@ -4,8 +4,8 @@
   "description": "ui for donatello mocking service",
   "main": "main.js",
   "scripts": {
-    "build": "electron-packager . Donatello --icon=donatello.icns",
-    "build:dev": "rm -rf dist && webpack --config=webpack.config.dev.js --watch",
+    "release": "npm run build && build electron-packager . Donatello --icon=assets/donatello.icns",
+    "build": "rm -rf dist && webpack --config=webpack.config.dev.js --watch",
     "serve": "electron .",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
