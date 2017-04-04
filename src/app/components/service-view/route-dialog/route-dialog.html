@@ -47,7 +47,13 @@
     </md-dialog-content>
 
     <md-dialog-actions class="do-dialog-actions">
-      <button class="do-save-dialog-btn" [disabled]="!routeForm.valid" md-raised-button (click)="saveRoute(route)">Save</button>
+      <button class="do-save-dialog-btn"
+              [disabled]="!routeForm.valid"
+              md-raised-button
+              (click)="saveRoute(route)"
+              color="primary">
+        Save
+      </button>
       <button class="do-close-dialog-btn" md-raised-button md-dialog-close>Close</button>
     </md-dialog-actions>
   </form>
