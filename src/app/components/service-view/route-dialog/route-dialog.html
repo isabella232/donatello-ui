@@ -1,48 +1,55 @@
-<div md-dialog-title>Route</div>
 <div>
   <form [formGroup]="routeForm">
     <md-dialog-content>
+      <md-tab-group>
+        <md-tab label="Route">
+          <div class="do-route-tab-container">
+            <md-input-container>
+              <input mdInput placeholder="Route Id" formControlName="id">
+            </md-input-container>
 
-      <md-input-container>
-        <input mdInput placeholder="Route Id" formControlName="id">
-      </md-input-container>
+            <md-input-container>
+              <input mdInput placeholder="Route Path" formControlName="path">
+            </md-input-container>
 
-      <md-input-container>
-        <input mdInput placeholder="Route Path" formControlName="path">
-      </md-input-container>
+            <div>
+              <md-select formControlName="method">
+                <md-option *ngFor="let method of methods" [value]="method">{{method}}</md-option>
+              </md-select>
+            </div>
 
-      <div>
-        <md-select formControlName="method">
-          <md-option *ngFor="let method of methods" [value]="method">{{method}}</md-option>
-        </md-select>
-      </div>
+            <md-slide-toggle formControlName="active">Active</md-slide-toggle>
+          </div>
 
-      <md-slide-toggle formControlName="active">Active</md-slide-toggle>
+        </md-tab>
+        <md-tab label="Responses">
+          <div class="do-response-tab-container">
+            <md-select class="do-responses-select"
+                       *ngIf="route.responses.length && !showAddResponse"
+                       placeholder="Responses..."
+                       (change)="onResponseEditChange($event)">
+              <md-option *ngFor="let response of route.responses" [value]="response">{{response.name}}</md-option>
+            </md-select>
 
-      <div class="do-response-container">
-        <md-select *ngIf="route.responses.length && !showAddResponse"
-                   placeholder="Responses..."
-                   (change)="onResponseEditChange($event)">
-          <md-option *ngFor="let response of route.responses" [value]="response">{{response.name}}</md-option>
-        </md-select>
+            <div class="ob-response-form-container" *ngIf="responseToEditConfig">
+              <response-form [config]="responseToEditConfig"
+                             (onSave)="onResponseEditSave($event)"
+                             (onDelete)="onResponseDeleteSave($event)"
+                             (onCancel)="onResponseEditCancel()">
+              </response-form>
+            </div>
 
-        <div class="ob-response-form-container" *ngIf="responseToEditConfig">
-          <response-form [config]="responseToEditConfig"
-                         (onSave)="onResponseEditSave($event)"
-                         (onDelete)="onResponseDeleteSave($event)"
-                         (onCancel)="onResponseEditCancel()">
-          </response-form>
-        </div>
+            <div class="do-add-btn-response-container" *ngIf="!showAddResponse && !responseToEditConfig">
+              <button md-raised-button (click)="addResponse()">Add Response</button>
+            </div>
 
-        <div class="do-add-btn-response-container" *ngIf="!showAddResponse && !responseToEditConfig">
-          <button md-raised-button (click)="addResponse()">Add Response</button>
-        </div>
+            <div class="ob-response-form-container" *ngIf="showAddResponse && !responseToEditConfig">
+              <response-form [config]="responseConfig" (onSave)="onResponseSave($event)" (onCancel)="onResponseCancel()"></response-form>
+            </div>
 
-        <div class="ob-response-form-container" *ngIf="showAddResponse && !responseToEditConfig">
-          <response-form [config]="responseConfig" (onSave)="onResponseSave($event)" (onCancel)="onResponseCancel()"></response-form>
-        </div>
-
-      </div>
+          </div>
+        </md-tab>
+      </md-tab-group>
 
     </md-dialog-content>
 
