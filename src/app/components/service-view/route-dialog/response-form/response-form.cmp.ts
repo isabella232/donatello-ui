@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IRoute, IResponse} from 'donatello';
+import {IResponse} from 'donatello';
+import {UtilService} from '../../../../services/util-service/util.srv';
 
 @Component({
   selector: 'response-form',
@@ -10,15 +11,16 @@ import {IRoute, IResponse} from 'donatello';
 export class ResponseForm implements OnInit {
   @Input() config: IResponseInputConfig;
   @Output() onSave = new EventEmitter();
+  @Output() onDelete = new EventEmitter();
   @Output() onCancel = new EventEmitter();
 
   responseForm: FormGroup;
   isUpdate: boolean = false;
   response: IResponse = {
-    id: '',
+    id: `Response_${UtilService.getRandomInt()}`,
     name: '',
     status: 200,
-    active: true,
+    active: false,
     delay: 1000,
     data: {}
   };
@@ -41,21 +43,25 @@ export class ResponseForm implements OnInit {
     });
   }
 
+  saveResponse() {
+    const response: IResponse = this.responseForm.getRawValue();
+    this.onSave.emit(response);
+  }
+
+  deleteResponse() {
+    this.onDelete.emit(this.config.response);
+  }
+
+  cancel() {
+    this.onCancel.emit();
+  }
+
   private initView() {
     this.serviceId = this.config.serviceId;
     this.routeId = this.config.routeId;
     this.isUpdate = !!this.config.response;
     this.response = {...this.response, ...this.config.response};
     this.prevResponseId = this.response.id;
-  }
-
-  saveResponse() {
-    const response: IResponse = this.responseForm.getRawValue();
-    this.onSave.emit(response);
-  }
-
-  cancel() {
-    this.onCancel.emit();
   }
 }
 

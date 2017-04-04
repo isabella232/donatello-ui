@@ -1,24 +1,37 @@
 & {
+  .editBtn() {
+    transform: scale(0.75);
+
+    &.mat-mini-fab {
+      background-color: inherit;
+      color: #000000;
+    }
+  }
+
   .do-service-view-container {
     padding: 10px;
   }
 
   .do-header {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 20px;
 
     .do-service-edit-btn {
-      transform: scale(0.75);
+      .editBtn();
     }
 
     .do-name {
       font-size: 22px;
+      line-height: 15px;
     }
 
     .do-number {
-      margin-left: 10px;
       color: #CCCCCC;
+    }
+
+    .do-proxy {
+      margin-left: 10px;
     }
   }
 
@@ -29,30 +42,43 @@
   }
 
   .do-route-line {
-      .do-method {
-        display: inline-block;
-        width: 60px;
-        height: 25px;
-        color: #FFFFFF;
-        text-align: center;
-        line-height: 25px;
+    .do-edit-route-btn {
+      margin-right: 10px;
+      visibility: hidden;
 
-        &.get {
-          background: #008018;
-        }
+      .editBtn();
+    }
 
-        &.post {
-          background: #FFA42E;
-        }
-
-        &.put {
-          background: #0000FF;
-        }
-
-        &.delete {
-          background: #000000;
-        }
+    &:hover {
+      .do-edit-route-btn {
+        visibility: visible;
       }
+    }
+
+    .do-method {
+      display: inline-block;
+      width: 60px;
+      height: 25px;
+      color: #FFFFFF;
+      text-align: center;
+      line-height: 25px;
+
+      &.get {
+        background: #008018;
+      }
+
+      &.post {
+        background: #FFA42E;
+      }
+
+      &.put {
+        background: #0000FF;
+      }
+
+      &.delete {
+        background: #000000;
+      }
+    }
 
     .do-path {
       flex: 1;

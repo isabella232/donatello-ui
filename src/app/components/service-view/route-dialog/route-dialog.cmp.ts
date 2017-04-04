@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
+import {MdDialogRef, MdSelectChange} from '@angular/material';
 import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IRoute, IResponse} from 'donatello';
 import {IResponseInputConfig} from './response-form/response-form.cmp';
+import {UtilService} from '../../../services/util-service/util.srv';
 
 @Component({
   selector: 'route-dialog',
@@ -15,7 +16,7 @@ export class RouteDialog implements OnInit {
   methods: string[] = ['GET', 'POST', 'PUT', 'DELETE'];
   isUpdate: boolean = false;
   route: IRoute = {
-    id: '',
+    id: `Route_${UtilService.getRandomInt()}`,
     method: 'GET',
     path: '/',
     active: true,
@@ -24,6 +25,7 @@ export class RouteDialog implements OnInit {
   serviceId: string;
   prevRouteId: string;
   responseConfig: IResponseInputConfig;
+  responseToEditConfig: IResponseInputConfig;
   showAddResponse: boolean = false;
   showEditResponse: boolean = false;
 
@@ -39,21 +41,8 @@ export class RouteDialog implements OnInit {
       path: [this.route.path, Validators.required],
       method: [this.route.method, Validators.required],
       active: [this.route.active]
+
     });
-  }
-
-  private initView() {
-    const {route, serviceId} = this.dialogRef.config.data;
-    this.serviceId = serviceId;
-    this.isUpdate = !!route;
-    this.route = <IRoute>{...this.route, ...route};
-    this.prevRouteId = this.route.id;
-
-    this.responseConfig = {
-      serviceId: serviceId,
-      routeId: this.route.id,
-      response: null
-    }
   }
 
   addResponse() {
@@ -69,6 +58,29 @@ export class RouteDialog implements OnInit {
     this.showAddResponse = false;
   }
 
+  onResponseEditChange({value}: {value: IResponse}) {
+    this.responseToEditConfig = {
+      response: {...value},
+      serviceId: this.serviceId,
+      routeId: this.route.id
+    };
+  }
+
+  onResponseEditSave(response: IResponse) {
+    const prevIndex = this.route.responses.findIndex((resp) => resp.id === this.responseToEditConfig.response.id);
+    this.route.responses[prevIndex] = response;
+    this.responseToEditConfig = null;
+  }
+
+  onResponseDeleteSave(response: IResponse) {
+    const prevIndex = this.route.responses.findIndex((resp) => resp.id === response.id);
+    this.route.responses.splice(prevIndex, 1);
+  }
+
+  onResponseEditCancel() {
+    this.responseToEditConfig = null;
+  }
+
   saveRoute() {
     const route: IRoute = {...this.route, ...this.routeForm.getRawValue()};
     this.isUpdate ?
@@ -76,5 +88,19 @@ export class RouteDialog implements OnInit {
       this.mockService.createRoute(this.serviceId, route);
 
     this.dialogRef.close();
+  }
+
+  private initView() {
+    const {route, serviceId} = this.dialogRef.config.data;
+    this.serviceId = serviceId;
+    this.isUpdate = !!route;
+    this.route = <IRoute>{...this.route, ...route};
+    this.prevRouteId = this.route.id;
+
+    this.responseConfig = {
+      serviceId: serviceId,
+      routeId: this.route.id,
+      response: null
+    };
   }
 }

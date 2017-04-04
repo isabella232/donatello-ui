@@ -4,19 +4,19 @@
     <md-dialog-content>
       <md-input-container>
         <input mdInput placeholder="Service Name" formControlName="name">
-        <!--<p *ngIf="registerForm.controls.serviceName.errors">This field is required!</p>-->
       </md-input-container>
 
       <md-input-container>
         <input mdInput placeholder="Service Id" formControlName="id">
-        <!--<p *ngIf="registerForm.controls.serviceId.errors">This field is required!</p>-->
       </md-input-container>
 
       <md-input-container>
-        <input mdInput placeholder="Port" formControlName="number">
-        <!--<p *ngIf="registerForm.controls.port.errors">This field is required!</p>-->
+        <input mdInput placeholder="Port number" formControlName="number">
       </md-input-container>
 
+      <md-input-container>
+        <input mdInput placeholder="Proxy URL" formControlName="proxyUrl">
+      </md-input-container>
     </md-dialog-content>
 
     <md-dialog-actions>

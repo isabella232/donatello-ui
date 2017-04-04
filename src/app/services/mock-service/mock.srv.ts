@@ -1,65 +1,28 @@
 import {Injectable} from '@angular/core';
-import {StateService, IPort, IRoute} from 'donatello';
+import {StateService, IPort, IRoute, IState} from 'donatello';
+import * as fs from 'fs';
 
 @Injectable()
 export class MockService {
   mockService: StateService;
 
-  constructor() {
+  init() {
     this.mockService = new StateService();
-    [
-      {
-        id: '1',
-        number: 3333,
-        name: 'port one',
-        active: true,
-        routes: [
-          {
-            id: 'ssdd',
-            path: '/',
-            method: 'GET',
-            active: true,
-            responses: [{
-              id: 'sss',
-              name: 'sdad',
-              status: 200,
-              delay: 0,
-              data: {data: 'vlad'},
-              active: true,
-            }],
-          }
-        ]
-      },
-      {
-        id: '2',
-        number: 1234,
-        name: 'port 2',
-        active: true,
-        routes: [
-          {
-            id: 'ssdd',
-            path: '/',
-            method: 'GET',
-            active: false,
-            responses: [{
-              id: 'sss',
-              name: 'sdad',
-              status: 200,
-              delay: 0,
-              data: {data: 'keren'},
-              active: true,
-            }],
-          }
-        ]
-      }
-    ].forEach((port) => {
-      this.mockService.createPort(<IPort>port);
-    });
+    this.readStateFromFile();
+  }
 
+  createRoute(serviceId: string, route: IRoute): void {
+    this.mockService.createRoute(serviceId, route);
+    this.writeStateToFile();
+  }
+
+  updateRoute(serviceId: string, routeId: string, route: IRoute): void {
+    this.mockService.updateRoute(serviceId, routeId, route);
+    this.writeStateToFile();
   }
 
   getService(id: string): IPort {
-    return this.mockService.getPort(id)
+    return this.mockService.getPort(id);
   }
 
   getAllServices(): IPort[] {
@@ -67,18 +30,53 @@ export class MockService {
   }
 
   createService(port: IPort) {
-    return this.mockService.createPort(port);
+    this.mockService.createPort(port);
+    this.writeStateToFile();
   }
 
   editService(portId: string, port: IPort) {
-    return this.mockService.updatePort(portId, port);
+    this.mockService.updatePort(portId, port)
+    this.writeStateToFile();
   }
 
-  createRoute(serviceId: string, route: IRoute): void {
-    this.mockService.createRoutes(serviceId, route);
+  activateState(serviceId: string, routeId: string) {
+    // this.mockService.a(serviceId, routeId);
+    this.writeStateToFile();
   }
 
-  updateRoute(serviceId: string, routeId: string, route: IRoute): void {
-    this.mockService.updateRoute(serviceId, routeId, route);
+  activateRoute(serviceId: string, routeId: string) {
+    this.mockService.activateRoute(serviceId, routeId);
+    this.writeStateToFile();
+  }
+
+  deactivateRoute(serviceId: string, routeId: string) {
+    this.mockService.deactivateRoute(serviceId, routeId);
+    this.writeStateToFile();
+  }
+
+  activateResponse(serviceId: string, routeId: string, responseId: string) {
+    this.mockService.activateResponse(serviceId, routeId, responseId);
+    this.writeStateToFile();
+  }
+
+  getState(): IState {
+    return this.mockService.getState();
+  }
+
+  private readStateFromFile() {
+    try {
+      const data = fs.readFileSync('state.json', {encoding: 'utf8'});
+      this.mockService.createState(JSON.parse(data.toString()));
+    } catch (e) {
+      console.log('no states.json file');
+    }
+  }
+
+  private writeStateToFile(state: IState = this.getState()) {
+    fs.writeFile('state.json', JSON.stringify(state), (err: NodeJS.ErrnoException, fd: number) => {
+      if (err) {
+        console.error('error!');
+      }
+    });
   }
 }

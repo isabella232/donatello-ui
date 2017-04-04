@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 import './service-dialog.less';
 import {MockService} from '../../../services/mock-service/mock.srv';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IPort} from 'donatello';
 import {UtilService} from '../../../services/util-service/util.srv';
 
@@ -17,7 +17,10 @@ export class ServiceDialog implements OnInit {
     id: `Service_${UtilService.getRandomInt()}`,
     name: '',
     number: null,
-    active: true
+    active: true,
+    proxy: {
+      url: ''
+    }
   };
   isUpdate: boolean = false;
 
@@ -31,15 +34,24 @@ export class ServiceDialog implements OnInit {
       id: [this.service.id, Validators.required],
       name: [this.service.name, Validators.required],
       number: [this.service.number, [Validators.required, Validators.pattern('[0-9]*')]],
+      proxyUrl: [this.service.proxy.url],
       active: [this.service.active]
     });
   }
 
   saveService() {
-    const service: IPort = this.serviceForm.getRawValue();
-    this.isUpdate ?
-    this.mockService.editService(service.id, service) :
-    this.mockService.createService(service);
-    this.dialogRef.close();
+    const rawValue = this.serviceForm.getRawValue();
+    if (rawValue.proxyUrl) {
+      rawValue.proxy = {
+        url: rawValue.proxyUrl
+      };
+
+      delete rawValue.proxyUrl
+    }
+
+    this.isUpdate ? this.mockService.editService(rawValue.id, rawValue) :
+      this.mockService.createService(rawValue);
+
+    this.dialogRef.close(rawValue);
   }
 }

@@ -1,21 +1,29 @@
 <div class="do-service-view-container">
   <div class="do-header">
-    <button class="do-service-edit-btn" md-mini-fab><i class="material-icons">mode_edit</i></button>
-    <span class="do-name">{{service.name}}</span>
-    <span class="do-number">{{service.number}}</span>
+    <!--<button class="do-service-edit-btn" md-mini-fab>-->
+    <!--<i class="material-icons">mode_edit</i>-->
+    <!--</button>-->
+    <div class="do-info">
+      <div class="do-name">{{service.name}}</div>
+      <div class="do-number">{{service.number}}</div>
+    </div>
+    <div class="do-proxy" *ngIf="service.proxy">({{service.proxy.url}})</div>
   </div>
 
   <md-list>
     <md-list-item class="do-route-line" *ngFor="let route of service.routes">
+      <button class="do-edit-route-btn" md-mini-fab (click)="openRouteDialog(route)">
+        <i class="material-icons">mode_edit</i>
+      </button>
       <md-slide-toggle [checked]="route.active" (change)="routeToggle(route, $event)"></md-slide-toggle>
       <span class="do-method {{route.method.toLowerCase()}}">{{route.method}}</span>
       <span class="do-path">{{route.path}}</span>
-
       <md-select (change)="responseChanged(route, $event)"
-                 placeholder="Response..."
+                 [(ngModel)]="selectedResponses[route.id]"
+                 placeholder="Response"
                  [disabled]="!route.active">
         <md-option *ngFor="let response of route.responses"
-                   [value]="response.name">
+                   [value]="response.id">
           {{response.name}}
         </md-option>
       </md-select>
