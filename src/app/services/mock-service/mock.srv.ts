@@ -76,9 +76,7 @@ export class MockService {
     fs.writeFile('state.json', JSON.stringify(state), (err: NodeJS.ErrnoException, fd: number) => {
       if (err) {
         console.error('error!');
-        return;
       }
-      console.log(fd);
     });
   }
 }

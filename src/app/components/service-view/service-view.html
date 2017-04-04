@@ -3,8 +3,11 @@
     <!--<button class="do-service-edit-btn" md-mini-fab>-->
     <!--<i class="material-icons">mode_edit</i>-->
     <!--</button>-->
-    <span class="do-name">{{service.name}}</span>
-    <span class="do-number">{{service.number}}</span>
+    <div class="do-info">
+      <div class="do-name">{{service.name}}</div>
+      <div class="do-number">{{service.number}}</div>
+    </div>
+    <div class="do-proxy" *ngIf="service.proxy">({{service.proxy.url}})</div>
   </div>
 
   <md-list>
