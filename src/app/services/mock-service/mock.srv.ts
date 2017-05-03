@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {StateService, IPort, IRoute, IState} from 'donatello';
+import {StateService, IPort, IRoute, IState} from 'donatello-core';
 import * as fs from 'fs';
 
 @Injectable()

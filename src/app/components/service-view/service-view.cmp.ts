@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {ActivatedRoute} from '@angular/router';
-import {IPort, IRoute, IResponse} from 'donatello';
+import {IPort, IRoute, IResponse} from 'donatello-core';
 import {MdSelectChange, MdSlideToggleChange, MdDialog} from '@angular/material';
 import {RouteDialog} from './route-dialog/route-dialog.cmp';
 

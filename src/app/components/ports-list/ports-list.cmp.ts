@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
-import {IPort} from 'donatello';
+import {IPort} from 'donatello-core';
 import {ServiceDialog} from './service-dialog/service-dialog.cmp';
 import {MdDialog} from '@angular/material';
 import {Router} from '@angular/router';

@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IResponse} from 'donatello';
+import {IResponse} from 'donatello-core';
 import {UtilService} from '../../../../services/util-service/util.srv';
 
 @Component({

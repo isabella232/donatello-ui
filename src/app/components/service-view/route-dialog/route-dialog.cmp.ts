@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialogRef, MdSelectChange} from '@angular/material';
 import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IRoute, IResponse} from 'donatello';
+import {IRoute, IResponse} from 'donatello-core';
 import {IResponseInputConfig} from './response-form/response-form.cmp';
 import {UtilService} from '../../../services/util-service/util.srv';
 

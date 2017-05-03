@@ -3,7 +3,7 @@ import {MdDialogRef} from '@angular/material';
 import './service-dialog.less';
 import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IPort} from 'donatello';
+import {IPort} from 'donatello-core';
 import {UtilService} from '../../../services/util-service/util.srv';
 
 @Component({
