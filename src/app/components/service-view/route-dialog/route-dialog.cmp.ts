@@ -91,7 +91,7 @@ export class RouteDialog implements OnInit {
   }
 
   private initView() {
-    const {route, serviceId} = this.dialogRef.config.data;
+    const {route, serviceId} = this.dialogRef.componentInstance;
     this.serviceId = serviceId;
     this.isUpdate = !!route;
     this.route = <IRoute>{...this.route, ...route};

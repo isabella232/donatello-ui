@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {MaterialModule} from '@angular/material';
 import {AppComponent} from './components/app/app.cmp';
 import {MockService} from './services/mock-service/mock.srv';
 import {PortsListComponent} from './components/ports-list/ports-list.cmp';
@@ -12,15 +11,38 @@ import {APP_BASE_HREF, LocationStrategy, HashLocationStrategy} from '@angular/co
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {RouteDialog} from './components/service-view/route-dialog/route-dialog.cmp';
 import {ResponseForm} from './components/service-view/route-dialog/response-form/response-form.cmp';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MdButtonModule,
+  MdInputModule,
+  MdSlideToggleModule,
+  MdSelectModule,
+  MdToolbarModule,
+  MdSidenavModule,
+  MdDialogModule,
+  MdTabsModule,
+  MdListModule
+} from '@angular/material';
 import './styles/theme.scss';
 
 @NgModule({
   imports: [
-    BrowserModule,
-    MaterialModule,
     RouterModule.forRoot(routes),
+    BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+
+    // material components
+    MdButtonModule,
+    MdInputModule,
+    MdSlideToggleModule,
+    MdSelectModule,
+    MdToolbarModule,
+    MdSidenavModule,
+    MdDialogModule,
+    MdTabsModule,
+    MdListModule
   ],
   declarations: [
     AppComponent,

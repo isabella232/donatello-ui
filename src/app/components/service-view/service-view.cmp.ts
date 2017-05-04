@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {MockService} from '../../services/mock-service/mock.srv';
 import {ActivatedRoute} from '@angular/router';
 import {IPort, IRoute, IResponse} from 'donatello-core';
-import {MdSelectChange, MdSlideToggleChange, MdDialog} from '@angular/material';
+import {MdDialog} from '@angular/material';
 import {RouteDialog} from './route-dialog/route-dialog.cmp';
 
 @Component({
   selector: 'do-service-view',
   template: require('./service-view.html'),
-  styles: [require('./service-view.less').toString()]
+  styles: [require('./service-view.less').toString(), ]
 })
 export class ServiceView implements OnInit {
   service: IPort;
