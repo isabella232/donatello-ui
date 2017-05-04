@@ -1,10 +1,13 @@
 import {Injectable} from '@angular/core';
 import {StateService, IPort, IRoute, IState} from 'donatello-core';
 import * as fs from 'fs';
+import {remote} from 'electron';
+import * as path from 'path';
 
 @Injectable()
 export class MockService {
   mockService: StateService;
+  private readonly stateDir = path.normalize(`${remote.app.getPath('userData')}/state.json`);
 
   init() {
     this.mockService = new StateService();
@@ -40,7 +43,6 @@ export class MockService {
   }
 
   activateState(serviceId: string, routeId: string) {
-    // this.mockService.a(serviceId, routeId);
     this.writeStateToFile();
   }
 
@@ -65,7 +67,7 @@ export class MockService {
 
   private readStateFromFile() {
     try {
-      const data = fs.readFileSync('state.json', {encoding: 'utf8'});
+      const data = fs.readFileSync(this.stateDir, {encoding: 'utf8'});
       this.mockService.createState(JSON.parse(data.toString()));
     } catch (e) {
       console.log('no states.json file');
@@ -73,7 +75,7 @@ export class MockService {
   }
 
   private writeStateToFile(state: IState = this.getState()) {
-    fs.writeFile('state.json', JSON.stringify(state), (err: NodeJS.ErrnoException, fd: number) => {
+    fs.writeFile(this.stateDir, JSON.stringify(state), (err: NodeJS.ErrnoException) => {
       if (err) {
         console.error('error!');
       }
