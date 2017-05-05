@@ -15,7 +15,11 @@
       <button class="do-edit-route-btn" md-mini-fab (click)="openRouteDialog(route)">
         <i class="material-icons">mode_edit</i>
       </button>
-      <md-slide-toggle [checked]="route.active" (change)="routeToggle(route, $event)"></md-slide-toggle>
+      <md-slide-toggle
+          class="do-route-toggle"
+          [checked]="route.active"
+          (change)="routeToggle(route, $event)">
+      </md-slide-toggle>
       <span class="do-method {{route.method.toLowerCase()}}">{{route.method}}</span>
       <span class="do-path">{{route.path}}</span>
       <md-select (change)="responseChanged(route, $event)"
