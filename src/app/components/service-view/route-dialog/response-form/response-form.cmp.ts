@@ -1,12 +1,13 @@
-import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {IResponse} from 'donatello-core';
 import {UtilService} from '../../../../services/util-service/util.srv';
+const JSONEditor = require('jsoneditor');
 
 @Component({
   selector: 'response-form',
   template: require('./response-form.html'),
-  styles: [require('./response-form.less').toString()]
+  styles: [require('./response-form.less').toString(), require('jsoneditor/dist/jsoneditor.min.css').toString()]
 })
 export class ResponseForm implements OnInit {
   @Input() config: IResponseInputConfig;
@@ -27,8 +28,10 @@ export class ResponseForm implements OnInit {
   serviceId: string;
   routeId: string;
   prevResponseId: string;
+  @ViewChild('editor') editorElement: ElementRef;
+  editor: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private el: ElementRef) {
   }
 
   ngOnInit() {
@@ -38,13 +41,13 @@ export class ResponseForm implements OnInit {
       name: [this.response.name, Validators.required],
       status: [this.response.status, Validators.required],
       delay: [this.response.delay, Validators.required],
-      data: [JSON.stringify(this.response.data)],
       active: [this.response.active]
     });
   }
 
   saveResponse() {
     const response: IResponse = this.responseForm.getRawValue();
+    response.data = this.response.data;
     this.onSave.emit(response);
   }
 
@@ -62,6 +65,20 @@ export class ResponseForm implements OnInit {
     this.isUpdate = !!this.config.response;
     this.response = {...this.response, ...this.config.response};
     this.prevResponseId = this.response.id;
+    this.initEditor();
+  }
+
+  initEditor() {
+    this.editor = new JSONEditor(this.editorElement.nativeElement, {
+      mode: 'code',
+      onChange: () => {
+        try {
+          this.response.data = this.editor.get();
+        } catch (e) {
+          console.log('invalid input in editor');
+        }
+      }
+    }, this.response.data);
   }
 }
 

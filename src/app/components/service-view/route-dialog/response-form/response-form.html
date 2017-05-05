@@ -1,4 +1,4 @@
-<div class="ob-response-container">
+<div class="do-response-container">
   <form [formGroup]="responseForm">
     <md-input-container>
       <input mdInput placeholder="Response Id" formControlName="id">
@@ -20,12 +20,8 @@
       <md-slide-toggle formControlName="active">Active</md-slide-toggle>
     </div>
 
-    <md-input-container>
-      <textarea mdInput placeholder="Response Data" formControlName="data" rows="6"></textarea>
-    </md-input-container>
-
-    <!--<codemirror formControlName="data" [config]="{}">-->
-    <!--</codemirror>-->
+    <div #editor class="do-response-editor">
+    </div>
 
     <div class="do-from-actions">
       <button class="do-save-btn"
