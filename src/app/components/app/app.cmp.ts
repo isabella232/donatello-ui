@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {MenuService} from '../../services/menu-service/menu.srv';
 
 @Component({
   selector: 'do-app',
@@ -6,6 +7,6 @@ import {Component} from '@angular/core';
   styles: [require('./app.less').toString()]
 })
 export class AppComponent {
-  constructor() {
+  constructor(menuService: MenuService) {
   }
 }
