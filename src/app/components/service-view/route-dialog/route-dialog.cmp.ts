@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {MdDialogRef, MdSelectChange} from '@angular/material';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MdDialogRef} from '@angular/material';
 import {MockService} from '../../../services/mock-service/mock.srv';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {IRoute, IResponse} from 'donatello-core';
+import {IResponse, IRoute} from 'donatello-core';
 import {IResponseInputConfig} from './response-form/response-form.cmp';
 import {UtilService} from '../../../services/util-service/util.srv';
+import {MD_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'route-dialog',
@@ -22,7 +23,7 @@ export class RouteDialog implements OnInit {
     active: true,
     responses: []
   };
-  serviceId: string;
+  serviceId: string = '';
   prevRouteId: string;
   responseConfig: IResponseInputConfig;
   responseToEditConfig: IResponseInputConfig;
@@ -31,7 +32,8 @@ export class RouteDialog implements OnInit {
 
   constructor(private dialogRef: MdDialogRef<RouteDialog>,
               private mockService: MockService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              @Inject(MD_DIALOG_DATA) public dialogData: IRouteDialogData) {
   }
 
   ngOnInit() {
@@ -91,7 +93,7 @@ export class RouteDialog implements OnInit {
   }
 
   private initView() {
-    const {route, serviceId} = this.dialogRef.componentInstance;
+    const {route, serviceId} = this.dialogData;
     this.serviceId = serviceId;
     this.isUpdate = !!route;
     this.route = <IRoute>{...this.route, ...route};
@@ -103,4 +105,9 @@ export class RouteDialog implements OnInit {
       response: null
     };
   }
+}
+
+export interface IRouteDialogData {
+  route: IRoute;
+  serviceId: string;
 }
