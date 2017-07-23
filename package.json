@@ -36,13 +36,14 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "@angular/animations": "^4.1.0",
+    "@angular/animations": "4.3.1",
+    "@angular/cdk": "^2.0.0-beta.8",
     "@angular/common": "4.3.1",
     "@angular/compiler": "4.3.1",
     "@angular/core": "4.3.1",
     "@angular/forms": "4.3.1",
     "@angular/http": "4.3.1",
-    "@angular/material": "^2.0.0-beta.3",
+    "@angular/material": "^2.0.0-beta.8",
     "@angular/platform-browser": "4.3.1",
     "@angular/platform-browser-dynamic": "4.3.1",
     "@angular/platform-server": "4.3.1",
@@ -54,7 +55,7 @@
     "reflect-metadata": "^0.1.9",
     "rxjs": "^5.3.1",
     "ts-helpers": "^1.1.2",
-    "typescript": "2.4.2",
+    "typescript": "2.3.0",
     "zone.js": "^0.8.10"
   }
 }
