@@ -21,7 +21,8 @@ import {
   MdSidenavModule,
   MdSlideToggleModule,
   MdTabsModule,
-  MdToolbarModule
+  MdToolbarModule,
+  MdMenuModule
 } from '@angular/material';
 import './styles/theme.scss';
 import {MenuService} from './services/menu-service/menu.srv';
@@ -43,7 +44,8 @@ import {MenuService} from './services/menu-service/menu.srv';
     MdSidenavModule,
     MdDialogModule,
     MdTabsModule,
-    MdListModule
+    MdListModule,
+    MdMenuModule
   ],
   declarations: [
     AppComponent,

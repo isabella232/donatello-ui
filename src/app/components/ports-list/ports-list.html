@@ -6,7 +6,23 @@
                   routerLinkActive="do-active">
       <h4 md-line>{{service.name}}</h4>
       <p md-line>{{service.number}}</p>
+
+      <button md-icon-button [mdMenuTriggerFor]="menu">
+        <md-icon class="material-icons">more_vert</md-icon>
+      </button>
+      <md-menu #menu="mdMenu">
+        <button md-menu-item (click)="removeService(service)">
+          <md-icon class="tiny material-icons">delete</md-icon>
+          <span>delete</span>
+        </button>
+        <button md-menu-item (click)="editService(service)">
+          <md-icon class="tiny material-icons">edit</md-icon>
+          <span>edit</span>
+        </button>
+      </md-menu>
+
     </md-list-item>
+
     <md-list-item *ngIf="!services.length">
       <h4>No Services Yet</h4>
     </md-list-item>

@@ -38,7 +38,12 @@ export class MockService {
   }
 
   editService(portId: string, port: IPort) {
-    this.mockService.updatePort(portId, port)
+    this.mockService.updatePort(portId, port);
+    this.writeStateToFile();
+  }
+
+  deleteService(portId: string) {
+    this.mockService.removePort(portId);
     this.writeStateToFile();
   }
 

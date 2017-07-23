@@ -33,6 +33,24 @@ export class PortsListComponent implements OnInit {
       }
     });
   }
+
+  removeService(service: IPort) {
+    this.mockService.deleteService(service.id);
+    this.ngOnInit();
+  }
+
+  editService(service: IPort) {
+    const dialogRef = this.dialog.open(ServiceDialog, {
+      data: {
+        service,
+        isUpdate: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 }
 
 
